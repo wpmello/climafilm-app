@@ -9,5 +9,14 @@
         android:id="@+id/splashFragment"
         android:name="com.example.climafilm.onboarding.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingViewPagerFragment"
+            app:destination="@id/onBoardingViewPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingViewPagerFragment"
+        android:name="com.example.climafilm.onboarding.OnBoardingViewPagerFragment"
+        android:label="fragment_on_boarding_view_pager"
+        tools:layout="@layout/fragment_on_boarding_view_pager" />
 </navigation>
