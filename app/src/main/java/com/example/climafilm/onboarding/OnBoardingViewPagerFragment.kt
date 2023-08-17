@@ -9,6 +9,7 @@ import com.example.climafilm.databinding.FragmentOnBoardingViewPagerBinding
 import com.example.climafilm.onboarding.screens.FindMovieIAHelperIntroductionFragment
 import com.example.climafilm.onboarding.screens.FindMovieIntroductionFragment
 import com.example.climafilm.onboarding.screens.WelcomeFragment
+import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardingViewPagerFragment : Fragment() {
 
@@ -34,5 +35,6 @@ class OnBoardingViewPagerFragment : Fragment() {
         val adapter = OnBoardingViewPagerAdapter(fragmentList, childFragmentManager, lifecycle)
 
         binding.viewPager2.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position -> }.attach()
     }
 }
