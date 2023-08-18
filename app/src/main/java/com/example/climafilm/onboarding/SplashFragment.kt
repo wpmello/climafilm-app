@@ -1,5 +1,6 @@
 package com.example.climafilm.onboarding
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -16,8 +17,18 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_onBoardingViewPagerFragment)
+            if (onBoardingFinished()) {
+                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_onBoardingViewPagerFragment)
+            }
         }, 3000)
         return inflater.inflate(R.layout.fragment_splash, container, false)
+    }
+
+    private fun onBoardingFinished(): Boolean {
+        val sharedPref =
+            requireActivity().getSharedPreferences("onBoardingFinished", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Finished", false)
     }
 }
