@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.climafilm.R
-class FindMovieIAHelperIntroductionFragment : Fragment() {
+class FindMovieIAHelperOnBoardingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_find_movie_i_a_helper_introduction, container, false)
+        return inflater.inflate(R.layout.fragment_find_movie_i_a_helper_onboarding, container, false)
     }
 }

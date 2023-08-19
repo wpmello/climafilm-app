@@ -20,7 +20,7 @@ class CarouselMovieAdapter(private var movieList: MutableList<Movie>) :
         val movie = movieList[position]
          holder.binding.apply {
              Glide.with(movieImage).load(movie.image).into(movieImage)
-            textView.text = movie.name
+            txtMovieName.text = movie.name
          }
     }
 
