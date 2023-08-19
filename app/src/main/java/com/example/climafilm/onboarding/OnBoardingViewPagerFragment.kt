@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.climafilm.R
 import com.example.climafilm.databinding.FragmentOnBoardingViewPagerBinding
-import com.example.climafilm.onboarding.screens.FindMovieIAHelperIntroductionFragment
-import com.example.climafilm.onboarding.screens.FindMovieIntroductionFragment
+import com.example.climafilm.onboarding.screens.FindMovieIAHelperOnBoardingFragment
+import com.example.climafilm.onboarding.screens.FindMoviePerMoodOnBoardingFragment
 import com.example.climafilm.onboarding.screens.WelcomeFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -34,8 +34,8 @@ class OnBoardingViewPagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fragmentList = arrayListOf(
-            FindMovieIntroductionFragment(),
-            FindMovieIAHelperIntroductionFragment(),
+            FindMoviePerMoodOnBoardingFragment(),
+            FindMovieIAHelperOnBoardingFragment(),
             WelcomeFragment()
         )
 
@@ -51,13 +51,13 @@ class OnBoardingViewPagerFragment : Fragment() {
 
                 when (position) {
                     0 -> {
-                        binding.nextButton.text = "Próximo"
+                        binding.nextButton.text = getString(R.string.next)
                     }
                     2 -> {
-                        binding.nextButton.text = "Finalizar"
+                        binding.nextButton.text = getString(R.string.finish)
                     }
                     else -> {
-                        binding.nextButton.text = "Próximo"
+                        binding.nextButton.text = getString(R.string.next)
                     }
                 }
                 super.onPageSelected(position)

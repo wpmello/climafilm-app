@@ -21,9 +21,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val movieList = mutableListOf(
-            Movie("Primeira", R.drawable.introduction_image),
-            Movie("Segunda", R.drawable.introduction_image_ia_helper),
-            Movie("Terceira", R.drawable.welcome_image)
+            Movie(getString(R.string.first), R.drawable.introduction_image),
+            Movie(getString(R.string.second), R.drawable.introduction_image_ia_helper),
+            Movie(getString(R.string.third), R.drawable.welcome_image)
         )
 
         val adapter = CarouselMovieAdapter(movieList)

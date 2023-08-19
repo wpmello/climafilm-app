@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.climafilm.R
-class FindMovieIntroductionFragment : Fragment() {
+class FindMoviePerMoodOnBoardingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_find_movie_introduction, container, false)
+        return inflater.inflate(R.layout.fragment_find_movie_per_mood_onboarding, container, false)
     }
 }

@@ -7,19 +7,18 @@
     tools:context=".HomeFragment">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- TextView do nome do app -->
         <TextView
-            android:id="@+id/appNameTextView"
+            android:id="@+id/txt_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Nome do Seu App"
+            android:text="@string/app_name"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,27 +28,26 @@
             android:id="@+id/carouselRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appNameTextView"
-            android:layout_margin="15dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_app_name" />
 
         <TextView
-            android:id="@+id/topRecyclerViewTitle"
+            android:id="@+id/txt_popular_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Filmes em Cima"
+            android:text="@string/popular_movies"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@id/carouselRecyclerView"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/recyclerViewTop"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/rv_popular_movies"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carouselRecyclerView" />
 
-        <!-- RecyclerView de filmes em cima -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTop"
+            android:id="@+id/rv_popular_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -58,22 +56,22 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topRecyclerViewTitle" />
+            app:layout_constraintTop_toBottomOf="@id/txt_popular_movie" />
 
         <TextView
-            android:id="@+id/bottomRecyclerViewTitle"
+            android:id="@+id/txt_top_rated_movies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Filmes embaixo"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@id/recyclerViewTop"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp" />
-        <!-- RecyclerView de filmes embaixo -->
+            android:text="@string/top_rated_movies"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_popular_movies" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewBottom"
+            android:id="@+id/rv_top_rated_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -81,9 +79,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bottomRecyclerViewTitle" />
+            app:layout_constraintTop_toBottomOf="@id/txt_top_rated_movies" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

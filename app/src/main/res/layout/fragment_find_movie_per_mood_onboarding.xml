@@ -4,45 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".onboarding.screens.FindMovieIAHelperIntroductionFragment"
-    tools:ignore="UnusedAttribute">
+    tools:ignore="UnusedAttribute"
+    tools:context=".onboarding.screens.FindMoviePerMoodOnBoardingFragment">
+
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_onboarding"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/introduction_image_ia_helper"
+        android:src="@drawable/introduction_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_onboarding_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/quicksand_bold"
-        android:text="TextView"
+        android:text="@string/now_playing_movies"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/image_onboarding" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_onboarding_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/quicksand_bold"
         android:lineHeight="25dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+        android:text="@string/find_movie_per_mood_description"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
