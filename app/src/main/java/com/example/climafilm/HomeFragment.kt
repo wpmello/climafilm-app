@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.climafilm.carousel.CarouselMovieAdapter
 import com.example.climafilm.databinding.FragmentHomeBinding
 import com.example.climafilm.model.Movie
+import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -21,20 +21,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val movieList = mutableListOf(
-            Movie(getString(R.string.first), R.drawable.introduction_image),
-            Movie(getString(R.string.second), R.drawable.introduction_image_ia_helper),
-            Movie(getString(R.string.third), R.drawable.welcome_image)
+            Movie(R.drawable.introduction_image),
+            Movie(R.drawable.introduction_image_ia_helper),
+            Movie(R.drawable.welcome_image)
         )
 
         val adapter = CarouselMovieAdapter(movieList)
 
-        binding.apply {
-            carouselRecyclerView.adapter = adapter
-            carouselRecyclerView.set3DItem(true)
-            carouselRecyclerView.setAlpha(true)
-            carouselRecyclerView.setInfinite(true)
-            carouselRecyclerView.size
-        }
+       binding.vpUpcomingMovies.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.vpUpcomingMovies) { tab, position -> }.attach()
         return binding.root
     }
 
