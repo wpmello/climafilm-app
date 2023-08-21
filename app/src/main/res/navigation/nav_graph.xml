@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.climafilm.onboarding.SplashFragment"
+        android:name="com.example.climafilm.ui.onboarding.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingViewPagerFragment"
-        android:name="com.example.climafilm.onboarding.OnBoardingViewPagerFragment"
+        android:name="com.example.climafilm.ui.onboarding.OnBoardingViewPagerFragment"
         android:label="fragment_on_boarding_view_pager"
         tools:layout="@layout/fragment_on_boarding_view_pager" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.climafilm.HomeFragment"
+        android:name="com.example.climafilm.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

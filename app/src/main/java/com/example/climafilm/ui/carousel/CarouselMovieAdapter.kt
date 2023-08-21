@@ -1,11 +1,11 @@
-package com.example.climafilm.carousel
+package com.example.climafilm.ui.carousel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.climafilm.databinding.CarouselMovieItemBinding
-import com.example.climafilm.model.Movie
+import com.example.climafilm.domain.model.Movie
 
 class CarouselMovieAdapter(private var movieList: MutableList<Movie>) :
     RecyclerView.Adapter<CarouselMovieAdapter.MovieViewHolder>() {

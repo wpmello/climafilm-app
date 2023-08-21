@@ -1,13 +1,14 @@
-package com.example.climafilm
+package com.example.climafilm.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.climafilm.carousel.CarouselMovieAdapter
+import com.example.climafilm.R
+import com.example.climafilm.ui.carousel.CarouselMovieAdapter
 import com.example.climafilm.databinding.FragmentHomeBinding
-import com.example.climafilm.model.Movie
+import com.example.climafilm.domain.model.Movie
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
