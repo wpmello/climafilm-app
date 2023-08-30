@@ -39,7 +39,13 @@ class MoviePagerAdapter @Inject constructor(
     inner class ViewHolder(private val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
-            requestManager.load(BASE_IMAGE_URL + movie.poster_path).fitCenter().into(binding.imageMovie)
+            binding.imageMovieName.text = movie.title
+            binding.releaseDate.text = movie.release_date
+            binding.genre.text = movie.genre_ids.first().toString()
+            binding.voteAverage.text = movie.vote_average.toString()
+            binding.voteCount.text = movie.vote_count.toString()
+            requestManager.load(BASE_IMAGE_URL + movie.backdrop_path).into(binding.backGroundImageMovie)
+            requestManager.load(BASE_IMAGE_URL + movie.poster_path).into(binding.imageMovie)
         }
     }
 }
