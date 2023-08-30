@@ -1,4 +1,4 @@
-package com.example.climafilm.onboarding
+package com.example.climafilm.ui.onboarding
 
 import android.content.Context
 import android.os.Bundle
