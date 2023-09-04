@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.climafilm.databinding.FragmentHomeBinding
 import com.example.climafilm.util.Resource
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -39,6 +40,7 @@ class HomeFragment : Fragment() {
                     response.data?.let { movieResponse ->
                         adapter.setList(movieResponse.results.map { it.toEntity() })
                         binding.viewPager2.adapter = adapter
+                        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position -> }.attach()
                         adapter.notifyDataSetChanged()
                     }
                 }
