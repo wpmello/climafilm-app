@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="15dp"
     android:layout_marginVertical="10dp"
-    tools:context=".ui.onboarding.OnBoardingViewPagerFragment">
+    tools:context=".ui.fragments.onboarding.OnBoardingViewPagerFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2

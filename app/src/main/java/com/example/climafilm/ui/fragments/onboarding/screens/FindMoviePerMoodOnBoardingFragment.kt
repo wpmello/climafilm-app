@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.onboarding.screens
+package com.example.climafilm.ui.fragments.onboarding.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.climafilm.R
-class FindMovieIAHelperOnBoardingFragment : Fragment() {
+class FindMoviePerMoodOnBoardingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_find_movie_i_a_helper_onboarding, container, false)
+        return inflater.inflate(R.layout.fragment_find_movie_per_mood_onboarding, container, false)
     }
 }
