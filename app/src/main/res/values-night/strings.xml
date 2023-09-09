@@ -14,4 +14,5 @@
     <string name="find_movie_ia_helper_description">Se a dúvida for entre dois filmes, tudo bem, peça à inteligência artificial para unir os dois filmes e ela te recomendará um com o melhor dos dois.</string>
     <string name="txt_welcome">Bem vindo</string>
     <string name="welcome_description">Agora é só escolher e curtir.</string>
+    <string name="upcoming_movies">Próximos lançamentos</string>
 </resources>

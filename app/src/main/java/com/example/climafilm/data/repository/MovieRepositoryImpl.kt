@@ -10,7 +10,19 @@ class MovieRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : MovieRepository {
 
-    override suspend fun getPlayingNowMovie(): Response<Poster> {
+    override suspend fun getPlayingNowMovies(): Response<Poster> {
         return apiService.getPlayingNowMovies()
+    }
+
+    override suspend fun getPopularMovies(): Response<Poster> {
+        return apiService.getPopularMovies()
+    }
+
+    override suspend fun getTopRatedMovies(): Response<Poster> {
+        return apiService.getTopRatedMovies()
+    }
+
+    override suspend fun getUpcomingMovies(): Response<Poster> {
+        return apiService.getUpcomingMovies()
     }
 }

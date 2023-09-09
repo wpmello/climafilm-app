@@ -1,14 +1,15 @@
-package com.example.climafilm.domain.usecase
+package com.example.climafilm.domain.usecase.impls
 
 import com.example.climafilm.data.model.Poster
 import com.example.climafilm.domain.repository.MovieRepository
+import com.example.climafilm.domain.usecase.GetUpcomingMoviesUseCase
 import retrofit2.Response
 import javax.inject.Inject
 
-class GetPlayingNowMoviesUseCaseImpl @Inject constructor(
+class GetUpcomingMoviesUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
-) : GetPlayingNowMoviesUseCase {
+) : GetUpcomingMoviesUseCase {
     override suspend fun invoke(): Response<Poster> {
-        return movieRepository.getPlayingNowMovie()
+        return movieRepository.getUpcomingMovies()
     }
 }
