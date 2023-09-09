@@ -1,0 +1,12 @@
+apply plugin: 'com.android.application'
+
+android {
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def gitTag = 'git describe --tags --abbrev=0'.execute().text.trim()
+            def newApkName = "release-${gitTag}-${variant.versionCode}.apk"
+            outputFileName = newApkName
+        }
+    }
+}
+

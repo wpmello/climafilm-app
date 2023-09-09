@@ -76,3 +76,5 @@ dependencies {
     annotationProcessor 'com.google.dagger:hilt-compiler:2.47'
 
 }
+
+apply from: 'custom.gradle'
