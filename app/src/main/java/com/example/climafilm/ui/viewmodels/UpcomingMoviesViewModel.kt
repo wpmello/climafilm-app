@@ -1,11 +1,11 @@
-package com.example.climafilm.ui
+package com.example.climafilm.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.data.model.Poster
-import com.example.climafilm.domain.usecase.GetPlayingNowMoviesUseCase
+import com.example.climafilm.domain.usecase.GetUpcomingMoviesUseCase
 import com.example.climafilm.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,20 +13,19 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val playingNowMoviesUseCase: GetPlayingNowMoviesUseCase
+class UpcomingMoviesViewModel @Inject constructor(
+    private val upcomingMoviesUseCase: GetUpcomingMoviesUseCase
 ) : ViewModel() {
-
     private val _movieList = MutableLiveData<Resource<Poster>>()
     var movieList: LiveData<Resource<Poster>> = _movieList
 
     init {
-        getPlayingNowMovies()
+        getPopularMovies()
     }
 
-    fun getPlayingNowMovies() = viewModelScope.launch {
+    fun getPopularMovies() = viewModelScope.launch {
         _movieList.postValue(Resource.Loading())
-        val response = playingNowMoviesUseCase.invoke()
+        val response = upcomingMoviesUseCase.invoke()
         _movieList.postValue(handleMovieResponse(response))
     }
 

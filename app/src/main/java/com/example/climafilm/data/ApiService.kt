@@ -7,4 +7,14 @@ import retrofit2.http.GET
 interface ApiService {
     @GET("on-playing")
     suspend fun getPlayingNowMovies(): Response<Poster>
+
+    @GET("popular-movies")
+    suspend fun getPopularMovies(): Response<Poster>
+
+    @GET("top-rated-movies")
+    suspend fun getTopRatedMovies(): Response<Poster>
+
+    @GET("upcoming")
+    suspend fun getUpcomingMovies(): Response<Poster>
+
 }

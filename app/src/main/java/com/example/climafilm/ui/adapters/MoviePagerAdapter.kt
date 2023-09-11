@@ -1,11 +1,11 @@
-package com.example.climafilm.ui
+package com.example.climafilm.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import com.example.climafilm.databinding.MovieItemBinding
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
+import com.example.climafilm.databinding.MovieItemViewPagerBinding
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.util.Constants.Companion.BASE_IMAGE_URL
 import java.text.SimpleDateFormat
@@ -20,7 +20,7 @@ class MoviePagerAdapter @Inject constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = MovieItemBinding.inflate(inflater, parent, false)
+        val binding = MovieItemViewPagerBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -51,7 +51,7 @@ class MoviePagerAdapter @Inject constructor(
         }
     }
 
-    inner class ViewHolder(private val binding: MovieItemBinding) :
+    inner class ViewHolder(private val binding: MovieItemViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
 

@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.onboarding
+package com.example.climafilm.ui.fragments.onboarding
 
 import android.content.Context
 import android.os.Bundle
@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.climafilm.R
 import com.example.climafilm.databinding.FragmentOnBoardingViewPagerBinding
-import com.example.climafilm.ui.onboarding.screens.FindMovieIAHelperOnBoardingFragment
-import com.example.climafilm.ui.onboarding.screens.FindMoviePerMoodOnBoardingFragment
-import com.example.climafilm.ui.onboarding.screens.WelcomeFragment
+import com.example.climafilm.ui.adapters.OnBoardingViewPagerAdapter
+import com.example.climafilm.ui.fragments.onboarding.screens.FindMovieIAHelperOnBoardingFragment
+import com.example.climafilm.ui.fragments.onboarding.screens.FindMoviePerMoodOnBoardingFragment
+import com.example.climafilm.ui.fragments.onboarding.screens.WelcomeFragment
+import com.example.climafilm.ui.viewmodels.OnBoardingPagerViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardingViewPagerFragment : Fragment() {

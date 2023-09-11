@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.onboarding.screens
+package com.example.climafilm.ui.fragments.onboarding.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -4,8 +4,14 @@ import com.example.climafilm.data.ApiService
 import com.example.climafilm.data.repository.MovieRepositoryImpl
 import com.example.climafilm.domain.repository.MovieRepository
 import com.example.climafilm.domain.usecase.GetPlayingNowMoviesUseCase
-import com.example.climafilm.domain.usecase.GetPlayingNowMoviesUseCaseImpl
-import com.example.climafilm.util.Constants
+import com.example.climafilm.domain.usecase.GetPopularMoviesUseCase
+import com.example.climafilm.domain.usecase.GetTopRatedMoviesUseCase
+import com.example.climafilm.domain.usecase.GetUpcomingMoviesUseCase
+import com.example.climafilm.domain.usecase.impls.GetPlayingNowMoviesUseCaseImpl
+import com.example.climafilm.domain.usecase.impls.GetPopularMoviesUseCaseImpl
+import com.example.climafilm.domain.usecase.impls.GetTopRatedMoviesUseCaseImpl
+import com.example.climafilm.domain.usecase.impls.GetUpcomingMoviesUseCaseImpl
+import com.example.climafilm.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,7 +38,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -46,13 +52,31 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun providesMovieRepository(apiService: ApiService): MovieRepository {
+        return MovieRepositoryImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
     fun providesGetPlayingNowMoviesUseCase(movieRepository: MovieRepository): GetPlayingNowMoviesUseCase {
         return GetPlayingNowMoviesUseCaseImpl(movieRepository)
     }
 
     @Provides
     @Singleton
-    fun providesMovieRepository(apiService: ApiService): MovieRepository {
-        return MovieRepositoryImpl(apiService)
+    fun providesGetPopularMoviesUseCase(movieRepository: MovieRepository): GetPopularMoviesUseCase {
+        return GetPopularMoviesUseCaseImpl(movieRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetTopRatedMoviesUseCase(movieRepository: MovieRepository): GetTopRatedMoviesUseCase {
+        return GetTopRatedMoviesUseCaseImpl(movieRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetUpcomingMoviesUseCase(movieRepository: MovieRepository): GetUpcomingMoviesUseCase {
+        return GetUpcomingMoviesUseCaseImpl(movieRepository)
     }
 }

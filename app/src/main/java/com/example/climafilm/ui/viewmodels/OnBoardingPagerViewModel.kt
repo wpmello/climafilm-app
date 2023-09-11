@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.onboarding
+package com.example.climafilm.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 
