@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
                     response.data?.let { movieResponse ->
                         popularAdapter.setList(movieResponse.results.map { it.toEntity() })
                         binding.rvPopularMovies.adapter = popularAdapter
-                        pagerAdapter.notifyDataSetChanged()
+                        popularAdapter.notifyDataSetChanged()
                     }
                 }
                 is Resource.Error -> {
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
                     response.data?.let { movieResponse ->
                         topRatedAdapter.setList(movieResponse.results.map { it.toEntity() })
                         binding.rvTopRatedMovies.adapter = topRatedAdapter
-                        pagerAdapter.notifyDataSetChanged()
+                        topRatedAdapter.notifyDataSetChanged()
                     }
                 }
                 is Resource.Error -> {
@@ -123,7 +123,7 @@ class HomeFragment : Fragment() {
                     response.data?.let { movieResponse ->
                         upcomingAdapter.setList(movieResponse.results.map { it.toEntity() })
                         binding.rvUpcomingMovies.adapter = upcomingAdapter
-                        pagerAdapter.notifyDataSetChanged()
+                        upcomingAdapter.notifyDataSetChanged()
                     }
                 }
                 is Resource.Error -> {

@@ -14,7 +14,7 @@ interface ApiService {
     @GET("top-rated-movies")
     suspend fun getTopRatedMovies(): Response<Poster>
 
-    @GET("upcoming")
+    @GET("upcoming-movies")
     suspend fun getUpcomingMovies(): Response<Poster>
 
 }
