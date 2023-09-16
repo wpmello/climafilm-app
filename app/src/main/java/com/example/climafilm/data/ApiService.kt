@@ -16,5 +16,4 @@ interface ApiService {
 
     @GET("upcoming-movies")
     suspend fun getUpcomingMovies(): Response<Poster>
-
 }

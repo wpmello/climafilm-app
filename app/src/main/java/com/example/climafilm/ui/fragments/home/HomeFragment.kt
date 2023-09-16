@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.fragments.homefragment
+package com.example.climafilm.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.climafilm.databinding.FragmentHomeBinding
-import com.example.climafilm.ui.adapters.MoviePagerAdapter
-import com.example.climafilm.ui.adapters.PopularMoviesAdapter
-import com.example.climafilm.ui.adapters.TopRatedMoviesAdapter
-import com.example.climafilm.ui.adapters.UpcomingMoviesAdapter
+import com.example.climafilm.ui.adapters.home.MoviePagerAdapter
+import com.example.climafilm.ui.adapters.home.PopularMoviesAdapter
+import com.example.climafilm.ui.adapters.home.TopRatedMoviesAdapter
+import com.example.climafilm.ui.adapters.home.UpcomingMoviesAdapter
 import com.example.climafilm.ui.viewmodels.HomeViewModel
 import com.example.climafilm.ui.viewmodels.PopularMoviesViewModel
 import com.example.climafilm.ui.viewmodels.TopRatedMoviesViewModel

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.climafilm.R
 import com.example.climafilm.databinding.FragmentOnBoardingViewPagerBinding
-import com.example.climafilm.ui.adapters.OnBoardingViewPagerAdapter
+import com.example.climafilm.ui.adapters.onboarding.OnBoardingViewPagerAdapter
 import com.example.climafilm.ui.fragments.onboarding.screens.FindMovieIAHelperOnBoardingFragment
 import com.example.climafilm.ui.fragments.onboarding.screens.FindMoviePerMoodOnBoardingFragment
 import com.example.climafilm.ui.fragments.onboarding.screens.WelcomeFragment

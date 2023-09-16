@@ -1,4 +1,4 @@
-package com.example.climafilm.ui.adapters
+package com.example.climafilm.ui.adapters.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
