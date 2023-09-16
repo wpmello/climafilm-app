@@ -15,7 +15,7 @@ import com.example.climafilm.ui.adapters.onboarding.OnBoardingViewPagerAdapter
 import com.example.climafilm.ui.fragments.onboarding.screens.FindMovieIAHelperOnBoardingFragment
 import com.example.climafilm.ui.fragments.onboarding.screens.FindMoviePerMoodOnBoardingFragment
 import com.example.climafilm.ui.fragments.onboarding.screens.WelcomeFragment
-import com.example.climafilm.ui.viewmodels.OnBoardingPagerViewModel
+import com.example.climafilm.ui.viewmodels.onboarding.OnBoardingPagerViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnBoardingViewPagerFragment : Fragment() {

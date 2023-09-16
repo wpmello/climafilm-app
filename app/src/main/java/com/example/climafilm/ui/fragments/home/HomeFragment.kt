@@ -12,10 +12,10 @@ import com.example.climafilm.ui.adapters.home.MoviePagerAdapter
 import com.example.climafilm.ui.adapters.home.PopularMoviesAdapter
 import com.example.climafilm.ui.adapters.home.TopRatedMoviesAdapter
 import com.example.climafilm.ui.adapters.home.UpcomingMoviesAdapter
-import com.example.climafilm.ui.viewmodels.HomeViewModel
-import com.example.climafilm.ui.viewmodels.PopularMoviesViewModel
-import com.example.climafilm.ui.viewmodels.TopRatedMoviesViewModel
-import com.example.climafilm.ui.viewmodels.UpcomingMoviesViewModel
+import com.example.climafilm.ui.viewmodels.home.HomeViewModel
+import com.example.climafilm.ui.viewmodels.home.PopularMoviesViewModel
+import com.example.climafilm.ui.viewmodels.home.TopRatedMoviesViewModel
+import com.example.climafilm.ui.viewmodels.home.UpcomingMoviesViewModel
 import com.example.climafilm.util.Resource
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

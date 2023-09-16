@@ -1,7 +1,8 @@
-package com.example.climafilm.ui.viewmodels
+package com.example.climafilm.ui.viewmodels.home
 
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.domain.usecase.GetTopRatedMoviesUseCase
+import com.example.climafilm.ui.viewmodels.BaseViewModel
 import com.example.climafilm.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
