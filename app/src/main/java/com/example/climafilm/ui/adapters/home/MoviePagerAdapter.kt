@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.RequestManager
-import com.example.climafilm.databinding.MovieItemRicyclerViewBinding
 import com.example.climafilm.databinding.MovieItemViewPagerBinding
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.domain.model.Movie
@@ -18,7 +17,7 @@ class MoviePagerAdapter @Inject constructor(
     private val requestManager: RequestManager
 ) : BaseMovieAdapter<Movie>() {
     override fun createBinding(inflater: LayoutInflater, parent: ViewGroup): ViewDataBinding {
-        return MovieItemRicyclerViewBinding.inflate(inflater, parent, false)
+        return MovieItemViewPagerBinding.inflate(inflater, parent, false)
     }
 
     override fun bind(holder: ViewHolder, movie: Movie) {
