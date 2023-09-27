@@ -17,12 +17,14 @@ abstract class BaseViewModel() : ViewModel() {
 
     protected abstract fun fetchMovies()
 
-    protected fun handleMovieResponse(response: Response<Poster>): Resource<Poster> {
-        if (response.isSuccessful) {
-            response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+    protected fun handleMovieResponse(response: Response<Poster>?): Resource<Poster>? {
+        response?.let {
+            if (it.isSuccessful) {
+                it.body()?.let { resultResponse ->
+                    return Resource.Success(resultResponse)
+                }
             }
         }
-        return Resource.Error(response.message())
+        return response?.message()?.let { Resource.Error(it) }
     }
 }
