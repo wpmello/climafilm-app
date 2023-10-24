@@ -14,6 +14,7 @@ abstract class BaseMovieAdapter(
 ) : RecyclerView.Adapter<BaseMovieAdapter.ViewHolder>() {
 
     private var movieList: List<Movie> = emptyList()
+    private var listener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -34,11 +35,16 @@ abstract class BaseMovieAdapter(
         val binding = holder.binding as MovieItemRicyclerViewBinding
         requestManager.load(Constants.BASE_IMAGE_URL + movie.poster_path).into(binding.imageMovie)
         binding.txtMovieName.text = movie.title
+        binding.layoutMovieImage.setOnClickListener { listener?.onItemClick(movie.id) }
     }
 
     fun setList(list: List<Movie>) {
         movieList = list
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 
     inner class ViewHolder(val binding: ViewDataBinding) :
@@ -47,5 +53,9 @@ abstract class BaseMovieAdapter(
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
         requestManager.clear(holder.binding.root)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(movieId: Int)
     }
 }

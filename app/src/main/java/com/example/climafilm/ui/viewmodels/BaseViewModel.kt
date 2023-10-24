@@ -3,21 +3,20 @@ package com.example.climafilm.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.climafilm.data.model.Poster
 import com.example.climafilm.util.Resource
 import retrofit2.Response
 
-abstract class BaseViewModel() : ViewModel() {
-    protected val _movieList = MutableLiveData<Resource<Poster>>()
-    var movieList: LiveData<Resource<Poster>> = _movieList
+abstract class BaseViewModel<T> : ViewModel() {
+    protected val _movie = MutableLiveData<Resource<T>>()
+    var movie: LiveData<Resource<T>> = _movie
 
     init {
-        fetchMovies()
+        this.fetchMovies()
     }
 
     protected abstract fun fetchMovies()
 
-    protected fun handleMovieResponse(response: Response<Poster>?): Resource<Poster>? {
+    protected fun handleResponse(response: Response<T>?): Resource<T>? {
         response?.let {
             if (it.isSuccessful) {
                 it.body()?.let { resultResponse ->

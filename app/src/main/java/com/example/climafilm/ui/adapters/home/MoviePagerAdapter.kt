@@ -7,9 +7,9 @@ import com.bumptech.glide.RequestManager
 import com.example.climafilm.databinding.MovieItemViewPagerBinding
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.domain.model.Movie
+import com.example.climafilm.ui.adapters.BaseMovieAdapter
+import com.example.climafilm.util.CommonComponents
 import com.example.climafilm.util.Constants.Companion.BASE_IMAGE_URL
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class MoviePagerAdapter @Inject constructor(
@@ -17,6 +17,7 @@ class MoviePagerAdapter @Inject constructor(
 ) : RecyclerView.Adapter<MoviePagerAdapter.ViewHolder>() {
 
     private var movieList: List<Movie> = listOf()
+    private var listener: BaseMovieAdapter.OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -35,17 +36,8 @@ class MoviePagerAdapter @Inject constructor(
         notifyDataSetChanged()
     }
 
-    private fun getFormattedDate(movie: Movie): String {
-        val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        val desiredFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-
-        return try {
-            val date = originalFormat.parse(movie.release_date)
-            date?.let { desiredFormat.format(it) }.toString()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            "Something went wrong"
-        }
+    fun setOnItemClickListener(listener: BaseMovieAdapter.OnItemClickListener) {
+        this.listener = listener
     }
 
     inner class ViewHolder(private val binding: MovieItemViewPagerBinding) :
@@ -54,13 +46,14 @@ class MoviePagerAdapter @Inject constructor(
             val genreName = mapGenreIdsToNames(movie.genre_ids).first()
 
             binding.imageMovieName.text = movie.title
-            binding.releaseDate.text = getFormattedDate(movie)
+            binding.releaseDate.text = CommonComponents.getFormattedDate(movie.release_date)
             binding.genre.text = genreName
             binding.voteAverage.text = movie.vote_average.toString()
             binding.voteCount.text = movie.vote_count.toString()
             requestManager.load(BASE_IMAGE_URL + movie.backdrop_path)
                 .into(binding.backGroundImageMovie)
             requestManager.load(BASE_IMAGE_URL + movie.poster_path).into(binding.imageMovie)
+            binding.layout.setOnClickListener { listener?.onItemClick(movie.id) }
         }
     }
 }
