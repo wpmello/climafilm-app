@@ -4,10 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
+import com.example.climafilm.databinding.MovieItemRicyclerViewBinding
+import com.example.climafilm.domain.model.Movie
+import com.example.climafilm.util.Constants
 
-abstract class BaseMovieAdapter<T> : RecyclerView.Adapter<BaseMovieAdapter<T>.ViewHolder>() {
+abstract class BaseMovieAdapter(
+    private val requestManager: RequestManager
+) : RecyclerView.Adapter<BaseMovieAdapter.ViewHolder>() {
 
-    protected var movieList: List<T> = emptyList()
+    private var movieList: List<Movie> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,13 +30,22 @@ abstract class BaseMovieAdapter<T> : RecyclerView.Adapter<BaseMovieAdapter<T>.Vi
 
     abstract fun createBinding(inflater: LayoutInflater, parent: ViewGroup): ViewDataBinding
 
-    abstract fun bind(holder: ViewHolder, movie: T)
+    private fun bind(holder: ViewHolder, movie: Movie){
+        val binding = holder.binding as MovieItemRicyclerViewBinding
+        requestManager.load(Constants.BASE_IMAGE_URL + movie.poster_path).into(binding.imageMovie)
+        binding.txtMovieName.text = movie.title
+    }
 
-    fun setList(list: List<T>) {
+    fun setList(list: List<Movie>) {
         movieList = list
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        requestManager.clear(holder.binding.root)
+    }
 }
