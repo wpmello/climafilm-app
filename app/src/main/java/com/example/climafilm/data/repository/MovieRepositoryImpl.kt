@@ -2,6 +2,7 @@ package com.example.climafilm.data.repository
 
 import com.example.climafilm.data.ApiService
 import com.example.climafilm.data.model.Poster
+import com.example.climafilm.data.model.detail.MovieDetail
 import com.example.climafilm.domain.repository.MovieRepository
 import retrofit2.Response
 import javax.inject.Inject
@@ -24,5 +25,9 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getUpcomingMovies(): Response<Poster> {
         return apiService.getUpcomingMovies()
+    }
+
+    override suspend fun getMovieDetailsById(movieId: Int): Response<MovieDetail> {
+        return apiService.getMovieDetailsById(movieId = movieId)
     }
 }
