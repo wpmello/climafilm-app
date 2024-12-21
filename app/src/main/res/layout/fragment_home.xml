@@ -107,6 +107,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_popular_movie" />
 
+            <ProgressBar
+                android:id="@+id/progress_popular_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/rv_popular_movies"
+                app:layout_constraintEnd_toEndOf="@id/rv_popular_movies"
+                app:layout_constraintStart_toStartOf="@id/rv_popular_movies"
+                app:layout_constraintTop_toTopOf="@id/rv_popular_movies" />
+
             <TextView
                 android:id="@+id/txt_top_rated_movies"
                 android:layout_width="wrap_content"
@@ -136,6 +146,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_top_rated_movies" />
 
+            <ProgressBar
+                android:id="@+id/progress_top_rated_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/rv_top_rated_movies"
+                app:layout_constraintEnd_toEndOf="@id/rv_top_rated_movies"
+                app:layout_constraintStart_toStartOf="@id/rv_top_rated_movies"
+                app:layout_constraintTop_toTopOf="@id/rv_top_rated_movies" />
+
             <TextView
                 android:id="@+id/txt_upcoming_movies"
                 android:layout_width="wrap_content"
@@ -160,12 +180,22 @@
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 tools:listitem="@layout/movie_item_ricycler_view"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="80dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_upcoming_movies" />
+
+            <ProgressBar
+                android:id="@+id/progress_upcoming_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/rv_upcoming_movies"
+                app:layout_constraintEnd_toEndOf="@id/rv_upcoming_movies"
+                app:layout_constraintStart_toStartOf="@id/rv_upcoming_movies"
+                app:layout_constraintTop_toTopOf="@id/rv_upcoming_movies" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

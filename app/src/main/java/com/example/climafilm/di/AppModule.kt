@@ -3,14 +3,8 @@ package com.example.climafilm.di
 import com.example.climafilm.data.ApiService
 import com.example.climafilm.data.repository.MovieRepositoryImpl
 import com.example.climafilm.domain.repository.MovieRepository
-import com.example.climafilm.domain.usecase.GetPlayingNowMoviesUseCase
-import com.example.climafilm.domain.usecase.GetPopularMoviesUseCase
-import com.example.climafilm.domain.usecase.GetTopRatedMoviesUseCase
-import com.example.climafilm.domain.usecase.GetUpcomingMoviesUseCase
-import com.example.climafilm.domain.usecase.impls.GetPlayingNowMoviesUseCaseImpl
-import com.example.climafilm.domain.usecase.impls.GetPopularMoviesUseCaseImpl
-import com.example.climafilm.domain.usecase.impls.GetTopRatedMoviesUseCaseImpl
-import com.example.climafilm.domain.usecase.impls.GetUpcomingMoviesUseCaseImpl
+import com.example.climafilm.domain.usecase.*
+import com.example.climafilm.domain.usecase.impls.*
 import com.example.climafilm.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -78,5 +72,11 @@ object AppModule {
     @Singleton
     fun providesGetUpcomingMoviesUseCase(movieRepository: MovieRepository): GetUpcomingMoviesUseCase {
         return GetUpcomingMoviesUseCaseImpl(movieRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetMovieDetailsUseCase(movieRepository: MovieRepository): GetMovieDetailsUseCase {
+        return GetMovieDetailsUseCaseImpl(movieRepository)
     }
 }
