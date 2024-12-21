@@ -22,7 +22,7 @@ class MoviePagerAdapter @Inject constructor(
 
     override fun bind(holder: ViewHolder, movie: Movie) {
         val binding = holder.binding as MovieItemViewPagerBinding
-        val genreName = mapGenreIdsToNames(movie.genre_ids).first()
+        val genreName = movie.genre_ids?.let { mapGenreIdsToNames(it).first() }
 
         binding.imageMovieName.text = movie.title
         binding.releaseDate.text = getFormattedDate(movie)
