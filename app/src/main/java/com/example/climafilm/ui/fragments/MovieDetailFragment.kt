@@ -74,7 +74,7 @@ class MovieDetailFragment : Fragment() {
                 .into(this.imageMovie)
             movieTitle.text = movieDetail.title
             rating.text = String.format("%.1f", movieDetail.vote_average)
-            releaseDate.text = CommonComponents.getFormattedDate(movieDetail.release_date)
+            releaseDate.text = movieDetail.release_date?.let { CommonComponents.getFormattedDate(it) }
             runtime.text = movieDetail.runtime.formatMinutesToHoursAndMinutes()
             description.text = movieDetail.overview
             val genreIds = movieDetail.genres.map { it.id }

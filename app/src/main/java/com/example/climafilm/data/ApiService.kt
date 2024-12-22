@@ -10,15 +10,15 @@ interface ApiService {
     @GET("movie/on-playing")
     suspend fun getPlayingNowMovies(): Response<Poster>
 
-    @GET("movie/popular-movies")
+    @GET("movie/popular")
     suspend fun getPopularMovies(): Response<Poster>
 
-    @GET("movie/top-rated-movies")
+    @GET("movie/top-rated")
     suspend fun getTopRatedMovies(): Response<Poster>
 
-    @GET("movie/upcoming-movies")
+    @GET("movie/upcoming")
     suspend fun getUpcomingMovies(): Response<Poster>
 
-    @GET("movie/{id}")
+    @GET("movie/movie-detail/{id}")
     suspend fun getMovieDetailsById(@Path("id") movieId: Int): Response<MovieDetail>
 }
