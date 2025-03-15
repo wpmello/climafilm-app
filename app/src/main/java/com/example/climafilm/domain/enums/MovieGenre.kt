@@ -24,6 +24,6 @@ enum class MovieGenre(val id: Int, val genreName: String) {
 
 fun mapGenreIdsToNames(genreIds: List<Int>): List<String> {
     return genreIds.map { id ->
-        MovieGenre.values().find { it.id == id }?.genreName ?: "Desconhecido"
+        MovieGenre.entries.find { it.id == id }?.genreName ?: "Desconhecido"
     }
 }

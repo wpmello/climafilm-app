@@ -16,9 +16,9 @@ class TopRatedMoviesViewModel @Inject constructor(
 ) : BaseViewModel<Poster>() {
     override fun fetchMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            _movie.postValue(Resource.Loading())
+            _movie.value = Resource.Loading()
             val response = topRatedMoviesUseCase.invoke()
-            _movie.postValue(handleResponse(response))
+            _movie.value = handleResponse(response) ?: Resource.Error("Error")
         }
     }
 }

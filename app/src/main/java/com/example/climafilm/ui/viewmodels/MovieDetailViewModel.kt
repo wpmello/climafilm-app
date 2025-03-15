@@ -17,9 +17,9 @@ class MovieDetailViewModel @Inject constructor(
 
     fun initialize(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            _movie.postValue(Resource.Loading())
+            _movie.value = Resource.Loading()
             val movieResponse = getMovieDetailsUseCase.invoke(movieId)
-            _movie.postValue(handleResponse(movieResponse))
+            _movie.value = handleResponse(movieResponse) ?: Resource.Error("Error")
         }
     }
 }

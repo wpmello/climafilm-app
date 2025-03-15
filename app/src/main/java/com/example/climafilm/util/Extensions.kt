@@ -1,5 +1,8 @@
 package com.example.climafilm.util
 
+import java.text.NumberFormat
+import java.util.Locale
+
 fun Int.formatMinutesToHoursAndMinutes(): String {
     val hours = this / 60
     val minutes = this % 60
@@ -13,4 +16,13 @@ fun Int.formatMinutesToHoursAndMinutes(): String {
     } else {
         "$minutes m"
     }
+}
+
+fun Int.formatNumber(): String {
+    return NumberFormat.getNumberInstance(Locale.getDefault()).format(this)
+}
+
+fun Int.formatCurrency(): String {
+    val currencyFormat = NumberFormat.getCurrencyInstance(Locale.US)
+    return currencyFormat.format(this)
 }

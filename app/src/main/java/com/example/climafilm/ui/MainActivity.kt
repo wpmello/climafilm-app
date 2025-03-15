@@ -1,15 +1,19 @@
 package com.example.climafilm.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.climafilm.R
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.compose.rememberNavController
+import com.example.climafilm.ui.navigation.hosts.onboarding.OnboardingNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        supportActionBar?.hide()
+        setContent {
+            OnboardingNavHost(navHostController = rememberNavController())
+            supportActionBar?.hide()
+        }
     }
 }

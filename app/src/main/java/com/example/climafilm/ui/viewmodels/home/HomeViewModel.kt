@@ -16,9 +16,9 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel<Poster>() {
     override fun fetchMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            _movie.postValue(Resource.Loading())
+            _movie.value = Resource.Loading()
             val response = playingNowMoviesUseCase.invoke()
-            _movie.postValue(handleResponse(response))
+            _movie.value = handleResponse(response) ?: Resource.Error("Error")
         }
     }
 }
