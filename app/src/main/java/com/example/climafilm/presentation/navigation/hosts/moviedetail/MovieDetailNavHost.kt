@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.example.climafilm.presentation.components.MovieDetailScreen
+import com.example.climafilm.presentation.features.moviedetail.MovieDetailScreen
 import com.example.climafilm.presentation.navigation.routes.moviedetail.MovieDetailRoutes
 
 fun NavGraphBuilder.movieDetailNavHost(navController: NavHostController) {

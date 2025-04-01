@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.components
+package com.example.climafilm.presentation.features.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

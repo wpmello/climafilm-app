@@ -3,7 +3,7 @@ package com.example.climafilm.presentation.viewmodels.home
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.data.model.Poster
 import com.example.climafilm.domain.usecase.GetPlayingNowMoviesUseCase
-import com.example.climafilm.presentation.viewmodels.BaseViewModel
+import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
 import com.example.climafilm.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

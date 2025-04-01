@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.components
+package com.example.climafilm.presentation.features.moviedetail
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -46,7 +46,7 @@ import com.example.climafilm.R
 import com.example.climafilm.data.model.detail.Genre
 import com.example.climafilm.data.model.detail.MovieDetail
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
-import com.example.climafilm.presentation.viewmodels.MovieDetailViewModel
+import com.example.climafilm.presentation.viewmodels.moviedetail.MovieDetailViewModel
 import com.example.climafilm.util.CommonComponents
 import com.example.climafilm.util.Constants
 import com.example.climafilm.util.Resource

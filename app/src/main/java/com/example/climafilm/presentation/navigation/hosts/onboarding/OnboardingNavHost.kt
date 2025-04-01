@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.climafilm.presentation.components.OnBoardingViewPagerScreen
-import com.example.climafilm.presentation.components.SplashScreen
+import com.example.climafilm.presentation.features.onboarding.OnBoardingViewPagerScreen
+import com.example.climafilm.presentation.features.onboarding.SplashScreen
 import com.example.climafilm.presentation.navigation.hosts.home.homeNavHost
 import com.example.climafilm.presentation.navigation.routes.home.HomeRoutes
 import com.example.climafilm.presentation.navigation.routes.onboarding.OnboardingRoutes

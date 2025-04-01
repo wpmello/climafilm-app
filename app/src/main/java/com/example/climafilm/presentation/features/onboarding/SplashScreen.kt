@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.components
+package com.example.climafilm.presentation.features.onboarding
 
 import android.content.Context
 import androidx.compose.foundation.Image

@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.components
+package com.example.climafilm.presentation.features.home
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background

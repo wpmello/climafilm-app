@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.viewmodels
+package com.example.climafilm.presentation.viewmodels.base
 
 import androidx.lifecycle.ViewModel
 import com.example.climafilm.util.Resource

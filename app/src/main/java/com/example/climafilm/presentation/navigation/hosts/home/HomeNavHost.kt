@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.example.climafilm.presentation.components.HomeScreen
-import com.example.climafilm.presentation.components.MovieDetailScreen
+import com.example.climafilm.presentation.features.home.HomeScreen
+import com.example.climafilm.presentation.features.moviedetail.MovieDetailScreen
 import com.example.climafilm.presentation.navigation.hosts.moviedetail.movieDetailNavHost
 import com.example.climafilm.presentation.navigation.routes.home.HomeRoutes
 import com.example.climafilm.presentation.navigation.routes.moviedetail.MovieDetailRoutes
