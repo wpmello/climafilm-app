@@ -23,17 +23,13 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,8 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.climafilm.R
 import com.example.climafilm.data.model.Poster
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
@@ -55,10 +49,8 @@ import com.example.climafilm.presentation.viewmodels.home.PopularMoviesViewModel
 import com.example.climafilm.presentation.viewmodels.home.TopRatedMoviesViewModel
 import com.example.climafilm.presentation.viewmodels.home.UpcomingMoviesViewModel
 import com.example.climafilm.util.CommonComponents
-import com.example.climafilm.util.Constants
 import com.example.climafilm.util.Resource
 import java.util.Locale
-import kotlin.math.roundToInt
 
 @Composable
 fun HomeScreen(onNavigateToMovieDetail: (Int) -> Unit) {
@@ -204,7 +196,7 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = movie.title ?: "The best movie of the world",
+                text = movie.title ?: "",
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
@@ -233,7 +225,7 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                         )
                         Icon(
                             imageVector = Icons.Default.ThumbUp,
-                            contentDescription = "Like",
+                            contentDescription = stringResource(R.string.like),
                             tint = Color.Blue,
                             modifier = Modifier
                                 .size(26.dp)
@@ -250,7 +242,7 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                         )
                         Icon(
                             imageVector = Icons.Default.Star,
-                            contentDescription = "Dislike",
+                            contentDescription = stringResource(R.string.dislike),
                             tint = Color.Yellow,
                             modifier = Modifier
                                 .size(26.dp)

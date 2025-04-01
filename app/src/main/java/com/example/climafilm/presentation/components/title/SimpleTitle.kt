@@ -22,7 +22,7 @@ fun SimpleTitle(
     textAlign: TextAlign = TextAlign.Center
 ) {
     Text(
-        text = title ?: "The best movie of the world",
+        text = title ?: "",
         color = color,
         fontSize = fontSize.sp,
         modifier = Modifier

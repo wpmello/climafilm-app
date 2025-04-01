@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -76,7 +77,7 @@ fun MovieDetailScreen(
         }
 
         is Resource.Error -> {
-            val message = (movieDetail as Resource.Error).message ?: "An error occurred"
+            val message = (movieDetail as Resource.Error).message ?: stringResource(R.string.an_error_occurred)
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
 
@@ -122,7 +123,7 @@ fun MovieDetailContent(
                 ) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = stringResource(R.string.back),
                         tint = Color.White,
                     )
                 }
@@ -139,7 +140,7 @@ fun MovieDetailContent(
                             .data(Constants.BASE_IMAGE_URL + movie.poster_path)
                             .crossfade(true)
                             .build(),
-                        contentDescription = "Movie Poster",
+                        contentDescription = stringResource(R.string.movie_poster),
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
                     )
@@ -187,7 +188,7 @@ fun MovieDetailContent(
             )
             InformationBox(movie = movie)
             Text(
-                text = "Watch Providers",
+                text = stringResource(R.string.watch_providers),
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
@@ -223,12 +224,12 @@ fun InformationBox(movie: MovieDetail) {
             .padding(16.dp)
     ) {
         Column(modifier = Modifier.weight(1f)) {
-            InfoItem(title = "Gêneros", content = mapGenreIdsToNames(movie.genres.map { it.id })
+            InfoItem(title = stringResource(R.string.genres), content = mapGenreIdsToNames(movie.genres.map { it.id })
                 .joinToString(", "))
-            InfoItem(title = "Slogan", content = movie.tagline)
-            InfoItem(title = "Quantidade de votos", content = movie.vote_count.formatNumber())
-            InfoItem(title = "Orçamento", content = movie.budget.formatCurrency())
-            InfoItem(title = "Receita", content = movie.revenue.formatCurrency())
+            InfoItem(title = stringResource(R.string.tag_line), content = movie.tagline)
+            InfoItem(title = stringResource(R.string.vote_count), content = movie.vote_count.formatNumber())
+            InfoItem(title = stringResource(R.string.budget), content = movie.budget.formatCurrency())
+            InfoItem(title = stringResource(R.string.revenue), content = movie.revenue.formatCurrency())
         }
     }
 }

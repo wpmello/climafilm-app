@@ -16,4 +16,14 @@
     <string name="welcome_description">Agora é só escolher e curtir.</string>
     <string name="upcoming_movies">Próximos lançamentos</string>
     <string name="error_loading_movies">Erro ao carregar filmes</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="an_error_occurred">An error occurred</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="watch_providers">Watch Providers</string>
+    <string name="genres">Gêneros</string>
+    <string name="tag_line">Slogan</string>
+    <string name="vote_count">Quantidade de votos</string>
+    <string name="budget">Orçamento</string>
+    <string name="revenue">Receita</string>
 </resources>
