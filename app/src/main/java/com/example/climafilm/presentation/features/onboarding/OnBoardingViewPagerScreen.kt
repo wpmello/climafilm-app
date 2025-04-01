@@ -2,6 +2,7 @@ package com.example.climafilm.presentation.features.onboarding
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,10 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
@@ -31,7 +33,6 @@ fun OnBoardingViewPagerScreen(
     onFinishOnboarding: () -> Unit,
     viewModel: OnboardingViewModel = hiltViewModel()
 ) {
-    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences(
         "onBoardingFinished", Context.MODE_PRIVATE
@@ -46,7 +47,7 @@ fun OnBoardingViewPagerScreen(
     }
 
     HorizontalPager(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(Color.White),
         state = pagerState,
     ) { index ->
         Column(modifier = Modifier.fillMaxSize()) {
@@ -106,4 +107,10 @@ private fun saveOnBoardingFinished(sharedPreferences: SharedPreferences) {
         putBoolean("Finished", true)
         apply()
     }
+}
+
+@Preview(showBackground = false)
+@Composable
+private fun OnboardingPreview() {
+    OnBoardingViewPagerScreen({})
 }

@@ -46,8 +46,4 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
     fun goToPreviousPage() {
         _currentPage.value--
     }
-
-    fun goToPage(page: Int) {
-        _currentPage.value = page
-    }
 }
