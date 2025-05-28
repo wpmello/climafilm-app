@@ -39,11 +39,7 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
         }
     )
 
-    fun goToNextPage() {
-        _currentPage.value++
-    }
-
-    fun goToPreviousPage() {
-        _currentPage.value--
+    fun updateCurrentPage(page: Int) {
+        _currentPage.value = page
     }
 }
