@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
+import com.example.climafilm.presentation.viewmodels.onboarding.OnBoardingPreferences
 import com.example.climafilm.presentation.viewmodels.onboarding.OnboardingViewModel
 import kotlinx.coroutines.launch
 
@@ -100,7 +101,6 @@ fun OnBoardingViewPagerScreen(
         }
     }
 }
-
 
 @Preview(showBackground = false)
 @Composable

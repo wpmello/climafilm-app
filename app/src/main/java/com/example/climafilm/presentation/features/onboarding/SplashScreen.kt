@@ -20,13 +20,9 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
 import com.example.climafilm.R
-import com.example.climafilm.util.dataStore
+import com.example.climafilm.presentation.viewmodels.onboarding.OnBoardingPreferences
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 @Composable
 fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: () -> Unit, context: Context) {
@@ -58,21 +54,5 @@ fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: 
             fontFamily = FontFamily(Font(R.font.quicksand_bold)),
             modifier = Modifier.align(Alignment.Center)
         )
-    }
-}
-
-object OnBoardingPreferences {
-    private val ONBOARDING_FINISHED = booleanPreferencesKey("onBoardingFinished")
-
-    suspend fun saveOnBoardingFinished(context: Context, finished: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[ONBOARDING_FINISHED] = finished
-        }
-    }
-
-    fun readOnBoardingFinished(context: Context): Flow<Boolean> {
-        return context.dataStore.data.map { preferences ->
-            preferences[ONBOARDING_FINISHED] ?: false
-        }
     }
 }
