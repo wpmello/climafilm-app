@@ -8,11 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -20,21 +21,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.climafilm.R
+import com.example.climafilm.presentation.viewmodels.onboarding.OnBoardingPreferences
 import kotlinx.coroutines.delay
 
-
 @Composable
-fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: () -> Unit) {
-    val context = LocalContext.current
-    val sharedPreferences = context.getSharedPreferences("onBoardingFinished", Context.MODE_PRIVATE)
-
-    fun onBoardingFinished(): Boolean {
-        return sharedPreferences.getBoolean("Finished", false)
-    }
+fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: () -> Unit, context: Context) {
+    val isFinished by OnBoardingPreferences.readOnBoardingFinished(context).collectAsState(initial = false)
 
     LaunchedEffect(Unit) {
         delay(3000L)
-        if (onBoardingFinished()) {
+        if (isFinished) {
             onNavigateToHome.invoke()
         } else {
             onNavigateToOnboardingViewPager.invoke()

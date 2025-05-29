@@ -92,13 +92,13 @@ fun MovieDetailScreen(
     }
 }
 
-
 @Composable
 fun MovieDetailContent(
     movie: MovieDetail,
     onBackPressed: () -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()
+        .background(Color.Black)) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.BASE_IMAGE_URL + movie.backdrop_path)

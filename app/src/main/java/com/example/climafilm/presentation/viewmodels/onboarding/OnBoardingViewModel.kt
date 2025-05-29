@@ -1,19 +1,22 @@
 package com.example.climafilm.presentation.viewmodels.onboarding
 
+import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.ViewModel
 import com.example.climafilm.R
 import com.example.climafilm.presentation.features.onboarding.OnboardingScreen
+import com.example.climafilm.util.dataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class OnboardingViewModel @Inject constructor() : ViewModel() {
-
     private val _currentPage = MutableStateFlow(0)
-    val currentPage: StateFlow<Int> = _currentPage
 
     val pages: List<@Composable () -> Unit> = listOf(
         {
@@ -39,11 +42,23 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
         }
     )
 
-    fun goToNextPage() {
-        _currentPage.value++
+    fun updateCurrentPage(page: Int) {
+        _currentPage.value = page
+    }
+}
+
+object OnBoardingPreferences {
+    private val ONBOARDING_FINISHED = booleanPreferencesKey("onBoardingFinished")
+
+    suspend fun saveOnBoardingFinished(context: Context, finished: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[ONBOARDING_FINISHED] = finished
+        }
     }
 
-    fun goToPreviousPage() {
-        _currentPage.value--
+    fun readOnBoardingFinished(context: Context): Flow<Boolean> {
+        return context.dataStore.data.map { preferences ->
+            preferences[ONBOARDING_FINISHED] ?: false
+        }
     }
 }

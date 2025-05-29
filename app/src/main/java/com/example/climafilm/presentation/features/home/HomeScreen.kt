@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
@@ -24,11 +25,13 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -133,6 +136,27 @@ fun NowPlayingSection(
                 ) { page ->
                     val movie = movies[page]
                     MoviePage(movie = movie, onClick = { onNavigateToMovieDetail(movie.id) })
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    repeat(movies.size) { index ->
+                        Box(
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .size(if (pagerState.currentPage == index) 12.dp else 8.dp)
+                                .clip(CircleShape)
+                                .background(
+                                    if (pagerState.currentPage == index) MaterialTheme.colorScheme.primary
+                                    else Color.Gray
+                                )
+                        )
+                    }
                 }
             }
 
