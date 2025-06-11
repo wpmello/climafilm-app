@@ -5,15 +5,19 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.material.icons.outlined.Face
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.WbSunny
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.climafilm.presentation.navigation.routes.bottombar.BottomBarRoutes
 import com.example.climafilm.presentation.navigation.routes.home.HomeRoutes
 
-
 data class BottomNavItem(
     val name: String,
     val route: String,
-    val icon: ImageVector
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector
 )
 
 object BottomNavItems {
@@ -21,22 +25,26 @@ object BottomNavItems {
         BottomNavItem(
             name = "Home",
             route = HomeRoutes.Home.toString(),
-            icon = Icons.Default.Home
+            selectedIcon = Icons.Filled.Home,
+            unselectedIcon = Icons.Outlined.Home
         ),
         BottomNavItem(
             name = "IA",
             route = BottomBarRoutes.IA.toString(),
-            icon = Icons.Default.Face
+            selectedIcon = Icons.Filled.Face,
+            unselectedIcon = Icons.Outlined.Face
         ),
         BottomNavItem(
             name = "Clima",
             route = BottomBarRoutes.Clima.toString(),
-            icon = Icons.Default.WbSunny
+            selectedIcon = Icons.Filled.WbSunny,
+            unselectedIcon = Icons.Outlined.WbSunny
         ),
         BottomNavItem(
             name = "Settings",
             route = BottomBarRoutes.Settings.toString(),
-            icon = Icons.Default.Settings
+            selectedIcon = Icons.Filled.Settings,
+            unselectedIcon = Icons.Outlined.Settings
         )
     )
 }

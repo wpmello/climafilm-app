@@ -13,11 +13,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.climafilm.R
@@ -28,17 +30,19 @@ fun OnboardingScreen(
     onBoardingTitleTextResourceId: Int,
     onBoardingContentTextResourceId: Int
 ) {
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+
     Box {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp),
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(painter = painterResource(id = imageResourceId),
+            Image(
+                painter = painterResource(id = imageResourceId),
                 contentDescription = null,
                 modifier = Modifier.fillMaxWidth()
-                    .height(400.dp),
+                    .height(screenHeight * 0.5f),
                 contentScale = ContentScale.Crop
             )
 
@@ -48,7 +52,8 @@ fun OnboardingScreen(
                 lineHeight = 15.sp,
                 fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 color = Color.Black,
-                modifier = Modifier.padding(top = 10.dp)
+                modifier = Modifier
+                    .padding(top = 20.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Start
             )
@@ -59,10 +64,20 @@ fun OnboardingScreen(
                 lineHeight = 25.sp,
                 fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 modifier = Modifier
-                    .padding(top = 25.dp)
+                    .padding(top = 25.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Start
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OnboardingPreview() {
+    OnboardingScreen(
+        R.string.welcome_description,
+        R.string.welcome_description,
+        R.string.welcome_description
+    )
 }
