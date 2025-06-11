@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
@@ -45,8 +44,7 @@ fun OnBoardingViewPagerScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
-            .padding(16.dp),
+            .background(Color.White),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         HorizontalPager(
@@ -63,7 +61,7 @@ fun OnBoardingViewPagerScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
@@ -100,10 +98,4 @@ fun OnBoardingViewPagerScreen(
             }
         }
     }
-}
-
-@Preview(showBackground = false)
-@Composable
-private fun OnboardingPreview() {
-    OnBoardingViewPagerScreen({})
 }

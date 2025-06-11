@@ -26,4 +26,5 @@
     <string name="vote_count">Quantidade de votos</string>
     <string name="budget">Orçamento</string>
     <string name="revenue">Receita</string>
+    <string name="ia_coming_soon_text">Esta funcionalidade será implementada em breve. Fique atento às próximas atualizações!</string>
 </resources>
