@@ -1,6 +1,7 @@
 package com.example.climafilm.data.repository
 
-import com.example.climafilm.data.ApiService
+import com.example.climafilm.data.source.remote.ApiService
+import com.example.climafilm.data.model.MovieResponse
 import com.example.climafilm.data.model.Poster
 import com.example.climafilm.data.model.detail.MovieDetail
 import com.example.climafilm.domain.repository.MovieRepository
@@ -29,5 +30,9 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieDetailsById(movieId: Int): Response<MovieDetail> {
         return apiService.getMovieDetailsById(movieId = movieId)
+    }
+
+    override suspend fun getMoviePerCity(city: String): Response<List<MovieResponse>> {
+        return apiService.getMoviePerCity(city = city)
     }
 }
