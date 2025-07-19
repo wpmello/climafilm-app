@@ -19,6 +19,7 @@ class CommonComponents {
         }
 
         fun getGenresMovieDescriptionPerTemp(temp: Int): String {
+            //TODO: resource strings
             return if (temp >= 40) {
                 "Nos estados/países com a temperatura 40°C ou mais são listados filmes que contém o gênero de ação";
             } else if (temp >= 36) {
