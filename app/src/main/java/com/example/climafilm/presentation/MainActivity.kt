@@ -3,9 +3,12 @@ package com.example.climafilm.presentation
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.climafilm.presentation.navigation.hosts.onboarding.OnboardingNavHost
@@ -16,8 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             val systemUiController = rememberSystemUiController()
             val useDarkIcons = false

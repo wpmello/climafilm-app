@@ -22,13 +22,18 @@ fun BottomNavGraph(navHostController: NavHostController) {
             HomeScreen(
                 onNavigateToMovieDetail = { movieDetailId ->
                     navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId))
-                })
+                }
+            )
         }
        composable(BottomBarRoutes.IA.toString()) {
             IAScreen()
         }
         composable(BottomBarRoutes.Clima.toString()) {
-            ClimaScreen()
+            ClimaScreen(
+                onNavigateToMovieDetail = { movieDetailId ->
+                    navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId))
+                }
+            )
         }
         composable(BottomBarRoutes.Settings.toString()) {
             SettingsScreen()

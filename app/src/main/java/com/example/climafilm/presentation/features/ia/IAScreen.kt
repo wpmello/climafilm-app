@@ -36,7 +36,7 @@ fun IAScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ai_assistant),
+                painter = painterResource(id = R.drawable.ia_assistant),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()

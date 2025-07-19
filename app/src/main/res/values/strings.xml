@@ -29,4 +29,7 @@
     <string name="budget">Orçamento</string>
     <string name="revenue">Receita</string>
     <string name="ia_coming_soon_text">Esta funcionalidade será implementada em breve. Fique atento às próximas atualizações!</string>
+    <string name="ia_coming_soon">Em breve!</string>
+    <string name="give_permission">Fornecer permissão</string>
+    <string name="give_permission_content">Ao fornecer as permissões de localização, o ClimaFilm irá usa-las apenas quando esta tela for aberta, para listar filmes com base na temperatura atual do local que o dispositivo está. Caso as permissões de localização não sejam fornecidas, o app buscará randomicamente um estado/pais.</string>
 </resources>

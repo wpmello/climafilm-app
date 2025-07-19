@@ -24,5 +24,5 @@ interface ApiService {
     suspend fun getMovieDetailsById(@Path("id") movieId: Int): Response<MovieDetail>
 
     @GET("movie/on-playing/{city}")
-    suspend fun getMoviePerCity(@Path("city") city: String): Response<List<MovieResponse>>
+    suspend fun getMoviePerCity(@Path("city") city: String): Response<Map<Long, List<MovieResponse>>>
 }

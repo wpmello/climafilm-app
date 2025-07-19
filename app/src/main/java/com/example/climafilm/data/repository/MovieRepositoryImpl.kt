@@ -32,7 +32,7 @@ class MovieRepositoryImpl @Inject constructor(
         return apiService.getMovieDetailsById(movieId = movieId)
     }
 
-    override suspend fun getMoviePerCity(city: String): Response<List<MovieResponse>> {
+    override suspend fun getMoviePerCity(city: String): Response<Map<Long, List<MovieResponse>>> {
         return apiService.getMoviePerCity(city = city)
     }
 }

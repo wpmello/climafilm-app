@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _movie.value = Resource.Loading()
             val response = playingNowMoviesUseCase.invoke()
-            _movie.value = handleResponse(response) ?: Resource.Error("Error")
+            _movie.value = handleResponse(response)
         }
     }
 }

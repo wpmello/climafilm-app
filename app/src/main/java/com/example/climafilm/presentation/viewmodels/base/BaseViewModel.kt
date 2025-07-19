@@ -16,14 +16,36 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     protected abstract fun fetchMovies()
 
-    protected fun handleResponse(response: Response<T>?): Resource<T>? {
-        response?.let {
-            if (it.isSuccessful) {
-                it.body()?.let { resultResponse ->
-                    return Resource.Success(resultResponse)
-                }
+    protected fun <T> handleResponse(response: Response<T>?): Resource<T> {
+        //Todo: create string resource
+        if (response == null) {
+            return Resource.Error("Resposta nula da API.")
+        }
+
+        if (response.isSuccessful) {
+            val body = response.body()
+            return if (body != null) {
+                Resource.Success(body)
+            } else {
+                Resource.Error("Corpo da resposta vazio, mas esperado.")
             }
         }
-        return response?.message()?.let { Resource.Error(it) }
+
+        val errorBody = response.errorBody()?.string()
+        val errorMessage = response.message()
+
+        val detailedErrorMessage = buildString {
+            append("Erro na API: ${response.code()}")
+            if (!errorMessage.isNullOrBlank()) {
+                append(" - $errorMessage")
+            }
+            if (!errorBody.isNullOrBlank()) {
+                append(" (Detalhes: $errorBody)")
+            }
+            if (isBlank()) {
+                append("Erro desconhecido na API.")
+            }
+        }
+        return Resource.Error(detailedErrorMessage)
     }
 }
