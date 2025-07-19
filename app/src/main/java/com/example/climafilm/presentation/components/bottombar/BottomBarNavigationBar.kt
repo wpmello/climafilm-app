@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.navigation.hosts.bottombar
+package com.example.climafilm.presentation.components.bottombar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.climafilm.presentation.components.item.BottomNavItems
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {

@@ -1,6 +1,5 @@
 package com.example.climafilm.presentation.features.home
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,7 +34,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,7 +43,7 @@ import com.example.climafilm.data.model.Poster
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.presentation.components.card.MovieCard
-import com.example.climafilm.presentation.components.list.MovieSection
+import com.example.climafilm.presentation.components.list.MovieList
 import com.example.climafilm.presentation.components.title.SimpleTitle
 import com.example.climafilm.presentation.viewmodels.home.HomeViewModel
 import com.example.climafilm.presentation.viewmodels.home.PopularMoviesViewModel
@@ -86,7 +84,7 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
+            .background(Color(0xFF121212))
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
@@ -163,42 +161,6 @@ fun NowPlayingSection(
             is Resource.Error -> {
                 Text(
                     text = nowPlayingMovies.message ?: stringResource(R.string.error_loading_movies),
-                    color = Color.Red,
-                    fontSize = 14.sp
-                )
-            }
-
-            is Resource.Loading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-            }
-        }
-    }
-}
-
-@Composable
-fun MovieList(
-    @StringRes title: Int,
-    moviesResource: Resource<Poster>,
-    onClick: (Int) -> Unit
-) {
-    Column(modifier = Modifier.padding(top = 16.dp)) {
-        SimpleTitle(
-            title = stringResource(title),
-            fontSize = 20, fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Start
-        )
-
-        when (moviesResource) {
-            is Resource.Success -> {
-                MovieSection(
-                    movies = moviesResource.data?.results?.map { it.toEntity() } ?: emptyList(),
-                    onClick = onClick
-                )
-            }
-
-            is Resource.Error -> {
-                Text(
-                    text = moviesResource.message ?: stringResource(R.string.error_loading_movies),
                     color = Color.Red,
                     fontSize = 14.sp
                 )

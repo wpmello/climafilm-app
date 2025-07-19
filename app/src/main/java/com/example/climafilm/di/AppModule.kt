@@ -1,6 +1,6 @@
 package com.example.climafilm.di
 
-import com.example.climafilm.data.ApiService
+import com.example.climafilm.data.source.remote.ApiService
 import com.example.climafilm.data.repository.MovieRepositoryImpl
 import com.example.climafilm.domain.repository.MovieRepository
 import com.example.climafilm.domain.usecase.*
@@ -78,5 +78,11 @@ object AppModule {
     @Singleton
     fun providesGetMovieDetailsUseCase(movieRepository: MovieRepository): GetMovieDetailsUseCase {
         return GetMovieDetailsUseCaseImpl(movieRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetMoviesPerCityUseCase(movieRepository: MovieRepository): GetMoviesPerCityUseCase {
+        return GetMoviesPerCityUseCaseImpl(movieRepository)
     }
 }

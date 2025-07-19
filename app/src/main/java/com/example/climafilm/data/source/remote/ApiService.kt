@@ -1,5 +1,6 @@
-package com.example.climafilm.data
+package com.example.climafilm.data.source.remote
 
+import com.example.climafilm.data.model.MovieResponse
 import com.example.climafilm.data.model.Poster
 import com.example.climafilm.data.model.detail.MovieDetail
 import retrofit2.Response
@@ -21,4 +22,7 @@ interface ApiService {
 
     @GET("movie/movie-detail/{id}")
     suspend fun getMovieDetailsById(@Path("id") movieId: Int): Response<MovieDetail>
+
+    @GET("movie/on-playing/{city}")
+    suspend fun getMoviePerCity(@Path("city") city: String): Response<Map<Long, List<MovieResponse>>>
 }

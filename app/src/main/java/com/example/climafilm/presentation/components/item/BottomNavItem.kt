@@ -1,4 +1,4 @@
-package com.example.climafilm.presentation.navigation.hosts.bottombar
+package com.example.climafilm.presentation.components.item
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.climafilm.presentation.navigation.hosts.bottombar.BottomNavGraph
-import com.example.climafilm.presentation.navigation.hosts.bottombar.BottomNavigationBar
+import com.example.climafilm.presentation.components.bottombar.BottomNavigationBar
 
 @Composable
 fun MainScreen() {
