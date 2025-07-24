@@ -54,19 +54,19 @@ fun BottomNavigationBar(navController: NavHostController) {
                                 restoreState = true
                             }
                         }
-                        .padding(4.dp)
                 ) {
                     Icon(
                         imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
                         contentDescription = item.name,
                         tint = if (isSelected) Color.White else Color.Gray,
-                        modifier = Modifier.size(26.dp)
+                        modifier = Modifier.size(26.dp).padding(top = 2.dp)
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = item.name,
                         color = if (isSelected) Color.White else Color.Gray,
-                        fontSize = 7.sp
+                        fontSize = 7.sp,
+                        modifier = Modifier.padding(bottom = 2.dp)
                     )
                 }
             }
