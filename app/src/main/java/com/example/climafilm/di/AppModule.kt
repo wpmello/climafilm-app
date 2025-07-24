@@ -1,7 +1,9 @@
 package com.example.climafilm.di
 
+import android.content.Context
 import com.example.climafilm.data.source.remote.ApiService
 import com.example.climafilm.data.repository.MovieRepositoryImpl
+import com.example.climafilm.data.source.local.AppPreferences
 import com.example.climafilm.domain.repository.MovieRepository
 import com.example.climafilm.domain.usecase.*
 import com.example.climafilm.domain.usecase.impls.*
@@ -9,6 +11,7 @@ import com.example.climafilm.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -84,5 +87,11 @@ object AppModule {
     @Singleton
     fun providesGetMoviesPerCityUseCase(movieRepository: MovieRepository): GetMoviesPerCityUseCase {
         return GetMoviesPerCityUseCaseImpl(movieRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesAppPreferences(@ApplicationContext context: Context): AppPreferences {
+        return AppPreferences(context)
     }
 }
