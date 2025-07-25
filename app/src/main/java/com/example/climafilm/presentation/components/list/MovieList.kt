@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,6 +53,7 @@ fun MovieList(
                 Text(
                     text = moviesResource.message ?: stringResource(R.string.error_loading_movies),
                     color = Color.Red,
+                    fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontSize = 14.sp
                 )
             }

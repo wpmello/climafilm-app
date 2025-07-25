@@ -164,6 +164,7 @@ fun NowPlayingSection(
                 Text(
                     text = nowPlayingMovies.message ?: stringResource(R.string.error_loading_movies),
                     color = Color.Red,
+                    fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontSize = 14.sp
                 )
             }

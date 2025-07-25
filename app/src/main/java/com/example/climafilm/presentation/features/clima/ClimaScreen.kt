@@ -14,11 +14,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.WbSunny
@@ -38,6 +38,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -82,8 +84,19 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
                     showDialog = false
                 }
             },
-            title = { Text(stringResource(R.string.give_permission)) },
-            text = { Text(stringResource(R.string.give_permission_content)) },
+            title = {
+                Text(
+                    stringResource(R.string.give_permission),
+                    color = MaterialTheme.colorScheme.primary
+                )
+            },
+            text = {
+                Text(
+                    stringResource(R.string.give_permission_content),
+                    color = MaterialTheme.colorScheme.secondary
+                )
+            },
+            containerColor = MaterialTheme.colorScheme.surface,
             confirmButton = {
                 Button(onClick = {
                     scope.launch {
@@ -91,7 +104,7 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
                         showDialog = false
                     }
                 }) {
-                    Text(stringResource(R.string.finish))
+                    Text(stringResource(R.string.finish), color = MaterialTheme.colorScheme.onBackground)
                 }
             }
         )
@@ -112,7 +125,7 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF121212))
+            .background(color = MaterialTheme.colorScheme.background)
             .padding(16.dp)
     ) {
         Spacer(modifier = Modifier.height(16.dp))
@@ -148,14 +161,16 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
             ) {
                 Text(
                     text = "${viewModel.cityName.value.trim()}, ",
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = "${viewModel.temp.value}°C",
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -164,7 +179,8 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
 
             Text(
                 text = getGenresMovieDescriptionPerTemp(viewModel.temp.value),
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.outline,
+                fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 fontSize = 14.sp,
                 lineHeight = 20.sp
             )
@@ -175,13 +191,14 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
             is Resource.Error -> Text(
                 text = stringResource(R.string.error_loading_movies),
                 color = Color.Red,
+                fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 fontSize = 14.sp,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
             is Resource.Loading -> CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                color = MaterialTheme.colors.primary
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
@@ -195,7 +212,7 @@ fun CategorizedMovies(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF121212))
+            .background(MaterialTheme.colorScheme.background)
             .padding(top = 16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
