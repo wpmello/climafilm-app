@@ -14,9 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,10 +28,12 @@ import com.example.climafilm.R
 
 @Composable
 fun IAScreen() {
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -40,14 +45,17 @@ fun IAScreen() {
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 24.dp),
+                    .height(screenHeight * 0.7f),
+                contentScale = ContentScale.Crop
             )
 
             Text(
                 text = "Em breve!",
                 style = MaterialTheme.typography.headlineLarge,
+                fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(top = 24.dp)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -55,6 +63,8 @@ fun IAScreen() {
             Text(
                 text = stringResource(R.string.ia_coming_soon_text),
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary,
+                fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 textAlign = TextAlign.Center
             )
 
