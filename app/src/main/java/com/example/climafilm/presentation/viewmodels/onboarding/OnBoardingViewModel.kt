@@ -36,7 +36,7 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
         },
         {
             OnboardingScreen(
-                imageResourceId = R.drawable.introduction_image,
+                imageResourceId = R.drawable.ia_assistant_like,
                 onBoardingTitleTextResourceId = R.string.txt_welcome,
                 onBoardingContentTextResourceId = R.string.welcome_description
             )
