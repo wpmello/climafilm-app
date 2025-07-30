@@ -213,8 +213,7 @@ fun CategorizedMovies(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(top = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(top = 16.dp)
     ) {
         categorizedMovies.forEach { (genreId, movies) ->
             item {
@@ -251,5 +250,34 @@ fun CategorizedMovies(
 @Preview(showBackground = true)
 @Composable
 private fun ClimaScreenPreview() {
-    ClimaScreen({})
+    val movies = listOf(MovieResponse(
+        id = 1,
+        title = "Movie Title",
+        poster_path = "/path/to/poster",
+        vote_count = 100,
+        vote_average = 7.5,
+        release_date = "2023-09-05",
+        overview = "Movie overview",
+        genre_ids = listOf(1, 2, 3),
+        adult = false,
+        backdrop_path = "/path/to/backdrop",
+        original_title = "Original Title",
+        popularity = 0.0,
+    ),
+        MovieResponse(
+            id = 1,
+            title = "Movie Title hdiapjpo daop ud puspoa udposupaodu pos",
+            poster_path = "/path/to/poster",
+            vote_count = 100,
+            vote_average = 7.5,
+            release_date = "2023-09-05",
+            overview = "Movie overview",
+            genre_ids = listOf(1, 2, 3),
+            adult = false,
+            backdrop_path = "/path/to/backdrop",
+            original_title = "Original Title",
+            popularity = 0.0,
+        ))
+    val categorizedMovies = mapOf(1 to movies, 2 to movies)
+    CategorizedMovies(categorizedMovies) { }
 }
