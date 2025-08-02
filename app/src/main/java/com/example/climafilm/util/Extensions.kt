@@ -31,6 +31,11 @@ fun Int.formatCurrency(): String {
     return currencyFormat.format(this)
 }
 
+fun Long.formatCurrency(): String {
+    val currencyFormat = NumberFormat.getCurrencyInstance(Locale.US)
+    return currencyFormat.format(this)
+}
+
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 inline fun <T, R> Resource<T>.map(transform: (T?) -> R): Resource<R> {

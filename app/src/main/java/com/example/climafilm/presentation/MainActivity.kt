@@ -7,11 +7,13 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.climafilm.data.source.local.AppPreferences
@@ -45,12 +47,12 @@ class MainActivity : AppCompatActivity() {
                 colorScheme = if (isDarkTheme) darkColorScheme() else lightColorScheme()
             ) {
                 val systemUiController = rememberSystemUiController()
-                val useDarkIcons = !isDarkTheme
+                val statusBarColor = MaterialTheme.colorScheme.background
 
                 SideEffect {
                     systemUiController.setSystemBarsColor(
-                        color = Color.Transparent,
-                        darkIcons = useDarkIcons
+                        color = statusBarColor,
+                        darkIcons = !isDarkTheme
                     )
                 }
 

@@ -21,7 +21,9 @@ fun BottomNavGraph(navHostController: NavHostController) {
         composable(BottomBarRoutes.Home.toString()) {
             HomeScreen(
                 onNavigateToMovieDetail = { movieDetailId ->
-                    navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId))
+                    navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId)) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -31,7 +33,9 @@ fun BottomNavGraph(navHostController: NavHostController) {
         composable(BottomBarRoutes.Clima.toString()) {
             ClimaScreen(
                 onNavigateToMovieDetail = { movieDetailId ->
-                    navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId))
+                    navHostController.navigate(route = MovieDetailRoutes.MovieDetail(movieDetailId)) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }

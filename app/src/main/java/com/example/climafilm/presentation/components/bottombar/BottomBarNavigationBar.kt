@@ -11,17 +11,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.climafilm.R
 import com.example.climafilm.presentation.components.item.BottomNavItems
 
 @Composable
@@ -35,7 +38,7 @@ fun BottomNavigationBar(navController: NavHostController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Black)
+                .background(MaterialTheme.colorScheme.background)
                 .height(48.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -58,14 +61,17 @@ fun BottomNavigationBar(navController: NavHostController) {
                     Icon(
                         imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
                         contentDescription = item.name,
-                        tint = if (isSelected) Color.White else Color.Gray,
-                        modifier = Modifier.size(26.dp).padding(top = 2.dp)
+                        tint = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier
+                            .size(26.dp)
+                            .padding(top = 2.dp)
                     )
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(1.dp))
                     Text(
                         text = item.name,
-                        color = if (isSelected) Color.White else Color.Gray,
+                        color = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
                         fontSize = 7.sp,
+                        fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                         modifier = Modifier.padding(bottom = 2.dp)
                     )
                 }

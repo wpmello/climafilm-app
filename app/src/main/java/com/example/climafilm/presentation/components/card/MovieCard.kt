@@ -3,8 +3,7 @@ package com.example.climafilm.presentation.components.card
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -15,7 +14,6 @@ import coil.request.ImageRequest
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.util.Constants
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MovieCard(modifier: Modifier = Modifier, width: Int = 150, height: Int = 200, movie: Movie, onClick: () -> Unit) {
     Card(

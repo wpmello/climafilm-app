@@ -22,21 +22,21 @@ class OnboardingViewModel @Inject constructor() : ViewModel() {
     val pages: List<@Composable () -> Unit> = listOf(
         {
             OnboardingScreen(
-                imageResourceId = R.drawable.introduction_image,
+                imageResourceId = R.drawable.climilda_poster,
                 onBoardingTitleTextResourceId = R.string.now_playing_movies,
                 onBoardingContentTextResourceId = R.string.find_movie_per_mood_description
             )
         },
         {
             OnboardingScreen(
-                imageResourceId = R.drawable.introduction_image_ia_helper,
+                imageResourceId = R.drawable.climilda_ia_assistant,
                 onBoardingTitleTextResourceId = R.string.ia_helper,
                 onBoardingContentTextResourceId = R.string.find_movie_ia_helper_description
             )
         },
         {
             OnboardingScreen(
-                imageResourceId = R.drawable.introduction_image,
+                imageResourceId = R.drawable.climilda,
                 onBoardingTitleTextResourceId = R.string.txt_welcome,
                 onBoardingContentTextResourceId = R.string.welcome_description
             )

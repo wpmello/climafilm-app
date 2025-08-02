@@ -5,7 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -29,7 +30,7 @@ fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: 
     val isFinished by OnBoardingPreferences.readOnBoardingFinished(context).collectAsState(initial = false)
 
     LaunchedEffect(Unit) {
-        delay(3000L)
+        delay(2000L)
         if (isFinished) {
             onNavigateToHome.invoke()
         } else {
@@ -37,7 +38,7 @@ fun SplashScreen(onNavigateToHome: () -> Unit, onNavigateToOnboardingViewPager: 
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         Image(
             painter = painterResource(id = R.drawable.ic_inital_image),
             contentDescription = null,

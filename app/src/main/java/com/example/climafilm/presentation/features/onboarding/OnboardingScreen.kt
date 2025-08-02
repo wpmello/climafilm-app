@@ -3,15 +3,16 @@ package com.example.climafilm.presentation.features.onboarding
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -31,7 +32,6 @@ fun OnboardingScreen(
     onBoardingContentTextResourceId: Int
 ) {
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
-
     Box {
         Column(
             modifier = Modifier
@@ -41,30 +41,33 @@ fun OnboardingScreen(
             Image(
                 painter = painterResource(id = imageResourceId),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth()
-                    .height(screenHeight * 0.5f),
-                contentScale = ContentScale.Crop
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(screenHeight * 0.7f),
+                contentScale = ContentScale.Fit
             )
 
             Text(
                 text = stringResource(id = onBoardingTitleTextResourceId),
-                fontSize = 14.sp,
-                lineHeight = 15.sp,
+                fontSize = 20.sp,
                 fontFamily = FontFamily(Font(R.font.quicksand_bold)),
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
                     .padding(top = 20.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Start
             )
 
+            Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = stringResource(id = onBoardingContentTextResourceId),
                 fontSize = 14.sp,
-                lineHeight = 25.sp,
+                lineHeight = 22.sp,
                 fontFamily = FontFamily(Font(R.font.quicksand_bold)),
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
-                    .padding(top = 25.dp, start = 16.dp, end = 16.dp)
+                    .padding(top = 8.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Start
             )

@@ -18,13 +18,13 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,6 +33,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,7 +86,7 @@ fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF121212))
+            .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
@@ -162,12 +164,16 @@ fun NowPlayingSection(
                 Text(
                     text = nowPlayingMovies.message ?: stringResource(R.string.error_loading_movies),
                     color = Color.Red,
+                    fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontSize = 14.sp
                 )
             }
 
             is Resource.Loading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    color = MaterialTheme.colorScheme.onBackground
+                )
             }
         }
     }
@@ -183,8 +189,9 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = movie.title ?: "",
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 16.sp,
+                fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.align(Alignment.Start)
             )
@@ -199,15 +206,17 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                     Text(
                         text = mapGenreIdsToNames(movie.genre_ids ?: listOf())
                             .joinToString(", "),
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                         fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                         modifier = Modifier.padding(4.dp)
                     )
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = movie.vote_count.toString(),
-                            color = Color.White,
-                            fontSize = 16.sp
+                            color = MaterialTheme.colorScheme.onBackground,
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.quicksand_bold))
                         )
                         Icon(
                             imageVector = Icons.Default.ThumbUp,
@@ -221,8 +230,9 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = String.format(Locale.getDefault(),"%.1f", movie.vote_average)+ "/10",
-                            color = Color.White,
+                            color = MaterialTheme.colorScheme.onBackground,
                             fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                             modifier = Modifier
                                 .padding(4.dp)
                         )
@@ -237,8 +247,9 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                     }
                     Text(
                         text = CommonComponents.getFormattedDate(movie.release_date),
-                        color = Color.White,
-                        fontSize = 16.sp
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.quicksand_bold))
                     )
                 }
             }
