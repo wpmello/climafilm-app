@@ -104,7 +104,7 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
                         showDialog = false
                     }
                 }) {
-                    Text(stringResource(R.string.finish), color = MaterialTheme.colorScheme.onBackground)
+                    Text(stringResource(R.string.finish), color = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         )

@@ -15,13 +15,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -56,7 +57,7 @@ import com.example.climafilm.util.formatNumber
 import java.util.Locale
 
 @Composable
-fun MovieDetailScreen(
+fun MovieDetailsScreen(
     movieId: Int,
     onBackPressed: () -> Unit,
 ) {
@@ -77,7 +78,8 @@ fun MovieDetailScreen(
         }
 
         is Resource.Error -> {
-            val message = (movieDetail as Resource.Error).message ?: stringResource(R.string.an_error_occurred)
+            val message = (movieDetail as Resource.Error).message
+                ?: stringResource(R.string.an_error_occurred)
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
 
@@ -85,7 +87,7 @@ fun MovieDetailScreen(
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(50.dp),
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
         }
@@ -97,8 +99,11 @@ fun MovieDetailContent(
     movie: MovieDetail,
     onBackPressed: () -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize()
-        .background(Color.Black)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(Constants.BASE_IMAGE_URL + movie.backdrop_path)
@@ -108,7 +113,7 @@ fun MovieDetailContent(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
-                .alpha(0.2f)
+                .alpha(0.3f)
         )
         Column(
             modifier = Modifier
@@ -122,9 +127,9 @@ fun MovieDetailContent(
                     modifier = Modifier.padding(8.dp)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back),
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.onBackground,
                     )
                 }
                 Card(
@@ -154,7 +159,7 @@ fun MovieDetailContent(
             ) {
                 Text(
                     text = movie.title,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -169,7 +174,7 @@ fun MovieDetailContent(
             ) {
                 DetailItem(
                     icon = R.drawable.ic_star_rate,
-                    text = String.format(Locale.getDefault(),"%.1f", movie.vote_average)
+                    text = String.format(Locale.getDefault(), "%.1f", movie.vote_average)
                 )
                 DetailItem(
                     icon = R.drawable.ic_calendar,
@@ -182,18 +187,11 @@ fun MovieDetailContent(
             }
             Text(
                 text = movie.overview,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(top = 32.dp, start = 16.dp, end = 16.dp)
             )
             InformationBox(movie = movie)
-            Text(
-                text = stringResource(R.string.watch_providers),
-                color = Color.White,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(top = 32.dp, start = 16.dp)
-            )
         }
     }
 }
@@ -204,10 +202,10 @@ fun DetailItem(icon: Int, text: String) {
         Icon(
             painter = painterResource(id = icon),
             contentDescription = null,
-            tint = Color.White,
+            tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(24.dp)
         )
-        Text(text = text, color = Color.White)
+        Text(text = text, color = MaterialTheme.colorScheme.onBackground)
     }
 }
 
@@ -216,7 +214,7 @@ fun InformationBox(movie: MovieDetail) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp, start = 16.dp, end = 16.dp)
+            .padding(vertical = 32.dp, horizontal = 16.dp)
             .background(
                 color = Color.DarkGray,
                 shape = RoundedCornerShape(8.dp)
@@ -224,12 +222,24 @@ fun InformationBox(movie: MovieDetail) {
             .padding(16.dp)
     ) {
         Column(modifier = Modifier.weight(1f)) {
-            InfoItem(title = stringResource(R.string.genres), content = mapGenreIdsToNames(movie.genres.map { it.id })
-                .joinToString(", "))
+            InfoItem(
+                title = stringResource(R.string.genres),
+                content = mapGenreIdsToNames(movie.genres.map { it.id })
+                    .joinToString(", ")
+            )
             InfoItem(title = stringResource(R.string.tag_line), content = movie.tagline)
-            InfoItem(title = stringResource(R.string.vote_count), content = movie.vote_count.formatNumber())
-            InfoItem(title = stringResource(R.string.budget), content = movie.budget.formatCurrency())
-            InfoItem(title = stringResource(R.string.revenue), content = movie.revenue.formatCurrency())
+            InfoItem(
+                title = stringResource(R.string.vote_count),
+                content = movie.vote_count.formatNumber()
+            )
+            InfoItem(
+                title = stringResource(R.string.budget),
+                content = movie.budget.formatCurrency()
+            )
+            InfoItem(
+                title = stringResource(R.string.revenue),
+                content = movie.revenue.formatCurrency()
+            )
         }
     }
 }
@@ -250,7 +260,7 @@ fun MovieDetailScreenPreview() {
         id = 1,
         title = "Movie Title",
         poster_path = "/path/to/poster",
-        genres = listOf(Genre(1, "name 1"),Genre(1, "name 1"),Genre(1, "name 1")),
+        genres = listOf(Genre(1, "name 1"), Genre(1, "name 1"), Genre(1, "name 1")),
         vote_count = 100,
         vote_average = 7.5,
         release_date = "2023-09-05",

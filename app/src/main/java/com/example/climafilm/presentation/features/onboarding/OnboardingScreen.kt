@@ -44,7 +44,7 @@ fun OnboardingScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(screenHeight * 0.7f),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
 
             Text(

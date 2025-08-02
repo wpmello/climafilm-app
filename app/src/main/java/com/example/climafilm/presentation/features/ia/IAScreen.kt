@@ -41,12 +41,12 @@ fun IAScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ia_assistant),
+                painter = painterResource(id = R.drawable.climilda_ia_assistant_like),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(screenHeight * 0.7f),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
 
             Text(

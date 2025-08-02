@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.example.climafilm.presentation.features.home.HomeScreen
-import com.example.climafilm.presentation.features.moviedetail.MovieDetailScreen
+import com.example.climafilm.presentation.features.moviedetail.MovieDetailsScreen
 import com.example.climafilm.presentation.navigation.hosts.moviedetail.movieDetailNavHost
 import com.example.climafilm.presentation.navigation.routes.home.HomeRoutes
 import com.example.climafilm.presentation.navigation.routes.moviedetail.MovieDetailRoutes
@@ -23,7 +23,7 @@ fun NavGraphBuilder.homeNavHost(navHostController: NavHostController) {
         }
         composable<MovieDetailRoutes.MovieDetail> { backStackEntry ->
             val movieDetail: MovieDetailRoutes.MovieDetail = backStackEntry.toRoute()
-            MovieDetailScreen(movieDetail.movieId, onBackPressed = { navHostController.popBackStack() })
+            MovieDetailsScreen(movieDetail.movieId, onBackPressed = { navHostController.popBackStack() })
         }
 
         movieDetailNavHost(navController = navHostController)
