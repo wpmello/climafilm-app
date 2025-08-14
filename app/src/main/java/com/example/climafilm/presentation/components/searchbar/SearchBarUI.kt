@@ -15,8 +15,10 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.example.climafilm.R
 
 @Composable
 fun SearchBarIU(
@@ -24,11 +26,11 @@ fun SearchBarIU(
     onQueryChange: (String) -> Unit,
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "Buscar...",
+    placeholder: String = stringResource(R.string.search),
     leadingIcon: @Composable (() -> Unit)? = {
         Icon(
             imageVector = Icons.Default.Search,
-            contentDescription = "Buscar"
+            contentDescription = stringResource(R.string.search)
         )
     },
     trailingIcon: @Composable (() -> Unit)? = null

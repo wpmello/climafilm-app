@@ -45,13 +45,20 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.climafilm.presentation.viewmodels.settings.AppThemeOption
+import com.example.climafilm.R
+import com.example.climafilm.domain.enums.AppThemeOption
+import com.example.climafilm.domain.enums.AppThemeOption.Companion.displayName
+import com.example.climafilm.domain.enums.Language
+import com.example.climafilm.domain.enums.Language.Companion.displayName
+import com.example.climafilm.domain.enums.TemperatureUnit
+import com.example.climafilm.domain.enums.TemperatureUnit.Companion.displayName
 import com.example.climafilm.presentation.viewmodels.settings.SettingsViewModel
-import com.example.climafilm.presentation.viewmodels.settings.displayName
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,6 +73,8 @@ fun SettingsScreen() {
     val interactionSource = remember { MutableInteractionSource() }
     val hasFocus = interactionSource.collectIsFocusedAsState()
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    val context = LocalContext.current
 
     LaunchedEffect(isSheetOpened) {
         if (isSheetOpened && uiState != null) {
@@ -100,14 +109,14 @@ fun SettingsScreen() {
                 .padding(16.dp)
         ) {
             Text(
-                text = "Configurações",
+                text = stringResource(R.string.settings),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 16.dp),
             )
 
             DefaultItemSelector(
-                title = "Nome do usuário",
+                title = stringResource(R.string.user_name),
                 value = viewModel.userName,
                 onClick = { viewModel.openSheet() }
             )
@@ -162,7 +171,7 @@ fun SettingsScreen() {
                             keyboardController?.hide()
                         }
                     ) {
-                        Text(text = "Salvar", color = MaterialTheme.colorScheme.onPrimary)
+                        Text(text = stringResource(R.string.save), color = MaterialTheme.colorScheme.onPrimary)
                     }
                 }
             }
@@ -170,30 +179,30 @@ fun SettingsScreen() {
             Spacer(modifier = Modifier.height(2.dp))
 
             DefaultDialogSelector(
-                title = "Unidade de temperatura",
-                currentSelection = uiState?.temperatureUnit ?: "Celsius",
-                options = listOf("Celsius"),
-                optionLabel = { it },
+                title = stringResource(R.string.temperature_unit),
+                currentSelection = uiState?.temperatureUnit ?: TemperatureUnit.CELSIUS,
+                options = TemperatureUnit.entries,
+                optionLabel = { it.displayName(context) },
                 onSelect = { viewModel.updateTemperatureUnit(it) }
             )
 
             Spacer(modifier = Modifier.height(2.dp))
 
             DefaultDialogSelector(
-                title = "Idioma",
-                currentSelection = uiState?.language ?: "Português",
-                options = listOf("Português"),
-                optionLabel = { it },
+                title = stringResource(R.string.language),
+                currentSelection = uiState?.language ?: Language.PORTUGUESE,
+                options = Language.entries,
+                optionLabel = { it.displayName(context) ?: "" },
                 onSelect = { viewModel.updateLanguage(it) }
             )
 
             Spacer(modifier = Modifier.height(2.dp))
 
             DefaultDialogSelector(
-                title = "Tema",
+                title = stringResource(R.string.theme),
                 currentSelection = uiState?.theme ?: AppThemeOption.SYSTEM,
                 options = AppThemeOption.entries,
-                optionLabel = { it.displayName() },
+                optionLabel = { it.displayName(context) },
                 onSelect = { viewModel.updateTheme(it) }
             )
 
@@ -201,18 +210,18 @@ fun SettingsScreen() {
             HorizontalDivider(thickness = 1.dp, color = Color.Gray)
 
             Text(
-                text = "Sobre o app",
+                text = stringResource(R.string.about_app),
                 color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(top = 16.dp)
             )
             Text(
-                text = "Versão: 1.0.0",
+                text = stringResource(R.string.hardcoced_version),
                 color = MaterialTheme.colorScheme.outline,
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = "Desenvolvido por Wagner",
+                text = stringResource(R.string.developed_by),
                 color = MaterialTheme.colorScheme.outline,
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -247,7 +256,7 @@ fun DefaultItemSelector(
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
-                    text = value.ifBlank { "Não definido" },
+                    text = value.ifBlank { stringResource(R.string.not_defined) },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.outline
                 )

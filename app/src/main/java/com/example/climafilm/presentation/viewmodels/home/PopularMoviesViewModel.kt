@@ -18,7 +18,7 @@ class PopularMoviesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _movie.value = Resource.Loading()
             val response = popularMoviesUseCase.invoke()
-            _movie.value = handleResponse(response) ?: Resource.Error("Error")
+            _movie.value = handleResponse(response)
         }
     }
 }
