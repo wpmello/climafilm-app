@@ -7,6 +7,9 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.data.source.local.AppPreferences
+import com.example.climafilm.domain.enums.AppThemeOption
+import com.example.climafilm.domain.enums.Language
+import com.example.climafilm.domain.enums.TemperatureUnit
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -87,14 +90,14 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun updateTemperatureUnit(temperatureUnit: String) {
+    fun updateTemperatureUnit(temperatureUnit: TemperatureUnit) {
         viewModelScope.launch {
             appPreferences.setTemperatureUnit(temperatureUnit)
             _uiState.update { it?.copy(temperatureUnit = temperatureUnit) }
         }
     }
 
-    fun updateLanguage(language: String) {
+    fun updateLanguage(language: Language) {
         viewModelScope.launch {
             appPreferences.setLanguage(language)
             _uiState.update { it?.copy(language = language) }
@@ -109,6 +112,7 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun openSheet() {
+        userNameField = TextFieldValue(userName)
         _isSheetOpened.value = true
     }
 
@@ -121,16 +125,6 @@ class SettingsViewModel @Inject constructor(
 data class SettingsUiState(
     val userName: String = "",
     val theme: AppThemeOption = AppThemeOption.SYSTEM,
-    val temperatureUnit: String = "Celsius",
-    val language: String = "Português"
+    val temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS,
+    val language: Language = Language.PORTUGUESE
 )
-
-enum class AppThemeOption {
-    SYSTEM, LIGHT, DARK
-}
-
-fun AppThemeOption.displayName(): String = when (this) {
-    AppThemeOption.LIGHT -> "Claro"
-    AppThemeOption.DARK -> "Escuro"
-    AppThemeOption.SYSTEM -> "Sistema"
-}

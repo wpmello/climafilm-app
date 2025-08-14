@@ -135,16 +135,16 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
             onQueryChange = { query = it },
             onSearch = { searchTerm -> viewModel.search(searchTerm) },
             leadingIcon = {
-                Icon(imageVector = Icons.Default.WbSunny, contentDescription = "Buscar")
+                Icon(imageVector = Icons.Default.WbSunny, contentDescription = stringResource(R.string.search))
             },
             trailingIcon = {
                 if (query.isNotEmpty()) {
                     IconButton(onClick = { query = "" }) {
-                        Icon(imageVector = Icons.Default.Close, contentDescription = "Limpar")
+                        Icon(imageVector = Icons.Default.Close, contentDescription = stringResource(R.string.clear))
                     }
                 }
             },
-            placeholder = "Digite um País/Estado..."
+            placeholder = stringResource(R.string.entry_any_country_or_state)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -218,7 +218,7 @@ fun CategorizedMovies(
         categorizedMovies.forEach { (genreId, movies) ->
             item {
                 Column {
-                    val genreName = mapGenreIdsToNames(listOf(genreId)).joinToString()
+                    val genreName = mapGenreIdsToNames(listOf(genreId), LocalContext.current).joinToString()
                     SimpleTitle(
                         title = genreName,
                         fontSize = 20,

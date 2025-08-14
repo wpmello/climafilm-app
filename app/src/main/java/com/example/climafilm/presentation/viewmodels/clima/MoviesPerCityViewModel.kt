@@ -7,6 +7,7 @@ import android.location.Geocoder
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewModelScope
+import com.example.climafilm.R
 import com.example.climafilm.data.model.MovieResponse
 import com.example.climafilm.domain.usecase.GetMoviesPerCityUseCase
 import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
@@ -24,6 +25,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class MoviesPerCityViewModel @Inject constructor(
@@ -84,8 +86,18 @@ class MoviesPerCityViewModel @Inject constructor(
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
+        val randomIndex = Random.nextInt(0, 6)
+        val continents = listOf(
+            context.getString(R.string.africa),
+            context.getString(R.string.america),
+            context.getString(R.string.antarctica),
+            context.getString(R.string.asia),
+            context.getString(R.string.europa),
+            context.getString(R.string.oceania)
+        )
+
         if (!hasFine && !hasCoarse) {
-            onCityResolved("Japão")
+            onCityResolved(continents[randomIndex])
             return
         }
 
@@ -116,7 +128,7 @@ class MoviesPerCityViewModel @Inject constructor(
                                     onCityResolved
                                 )
                             } else {
-                                onCityResolved("Japão")
+                                onCityResolved(continents[randomIndex])
                             }
                             fusedLocationClient.removeLocationUpdates(this)
                         }
@@ -125,7 +137,7 @@ class MoviesPerCityViewModel @Inject constructor(
                 )
             }
         }.addOnFailureListener {
-            onCityResolved("Japão")
+            onCityResolved(continents[randomIndex])
         }
     }
 
@@ -135,6 +147,16 @@ class MoviesPerCityViewModel @Inject constructor(
         longitude: Double,
         onCityResolved: (String) -> Unit
     ) {
+        val randomIndex = Random.nextInt(0, 6)
+        val continents = listOf(
+            context.getString(R.string.africa),
+            context.getString(R.string.america),
+            context.getString(R.string.antarctica),
+            context.getString(R.string.asia),
+            context.getString(R.string.europa),
+            context.getString(R.string.oceania)
+        )
+
         try {
             val geocoder = Geocoder(context, Locale.getDefault())
             // Todo: resolve deprecated
@@ -145,12 +167,12 @@ class MoviesPerCityViewModel @Inject constructor(
                 ?: address?.subAdminArea
                 ?: address?.adminArea
                 ?: address?.countryName
-                ?: "Japão"
+                ?: continents[randomIndex]
 
             onCityResolved(city)
 
         } catch (e: Exception) {
-            onCityResolved("Japão")
+            onCityResolved(continents[randomIndex])
         }
     }
 }

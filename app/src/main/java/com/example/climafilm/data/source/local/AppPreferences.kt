@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.climafilm.presentation.viewmodels.settings.AppThemeOption
+import com.example.climafilm.domain.enums.AppThemeOption
+import com.example.climafilm.domain.enums.Language
+import com.example.climafilm.domain.enums.TemperatureUnit
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,11 +35,11 @@ class AppPreferences @Inject constructor(
     private val _appTheme = MutableStateFlow(AppThemeOption.SYSTEM)
     val appTheme: StateFlow<AppThemeOption> = _appTheme.asStateFlow()
 
-    private val _temperatureUnit = MutableStateFlow("Celsius")
-    val temperatureUnit: StateFlow<String> = _temperatureUnit.asStateFlow()
+    private val _temperatureUnit = MutableStateFlow(TemperatureUnit.CELSIUS)
+    val temperatureUnit: StateFlow<TemperatureUnit> = _temperatureUnit.asStateFlow()
 
-    private val _language = MutableStateFlow("Português")
-    val language: StateFlow<String> = _language.asStateFlow()
+    private val _language = MutableStateFlow(Language.PORTUGUESE)
+    val language: StateFlow<Language> = _language.asStateFlow()
 
     init {
         context.dataStore.data
@@ -46,8 +48,12 @@ class AppPreferences @Inject constructor(
                 _appTheme.value = preferences[THEME]?.let {
                     runCatching { AppThemeOption.valueOf(it) }.getOrDefault(AppThemeOption.SYSTEM)
                 } ?: AppThemeOption.SYSTEM
-                _temperatureUnit.value = preferences[TEMPERATURE_UNIT] ?: "Celsius"
-                _language.value = preferences[LANGUAGE] ?: "Português"
+                _temperatureUnit.value = preferences[TEMPERATURE_UNIT]?.let {
+                    runCatching { TemperatureUnit.valueOf(it) }.getOrDefault(TemperatureUnit.CELSIUS)
+                } ?: TemperatureUnit.CELSIUS
+                _language.value = preferences[LANGUAGE]?.let {
+                    runCatching { Language.valueOf(it) }.getOrDefault(Language.PORTUGUESE)
+                } ?: Language.PORTUGUESE
             }
             .launchIn(CoroutineScope(Dispatchers.IO))
     }
@@ -60,11 +66,11 @@ class AppPreferences @Inject constructor(
         context.dataStore.edit { it[THEME] = theme.name }
     }
 
-    suspend fun setTemperatureUnit(unit: String) {
-        context.dataStore.edit { it[TEMPERATURE_UNIT] = unit }
+    suspend fun setTemperatureUnit(unit: TemperatureUnit) {
+        context.dataStore.edit { it[TEMPERATURE_UNIT] = unit.name }
     }
 
-    suspend fun setLanguage(language: String) {
-        context.dataStore.edit { it[LANGUAGE] = language }
+    suspend fun setLanguage(language: Language) {
+        context.dataStore.edit { it[LANGUAGE] = language.name }
     }
 }

@@ -109,7 +109,7 @@ fun MovieDetailContent(
                 .data(Constants.BASE_IMAGE_URL + movie.backdrop_path)
                 .crossfade(true)
                 .build(),
-            contentDescription = "Background Movie",
+            contentDescription = stringResource(R.string.background_movie),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
@@ -224,7 +224,7 @@ fun InformationBox(movie: MovieDetail) {
         Column(modifier = Modifier.weight(1f)) {
             InfoItem(
                 title = stringResource(R.string.genres),
-                content = mapGenreIdsToNames(movie.genres.map { it.id })
+                content = mapGenreIdsToNames(movie.genres.map { it.id }, LocalContext.current)
                     .joinToString(", ")
             )
             InfoItem(title = stringResource(R.string.tag_line), content = movie.tagline)
