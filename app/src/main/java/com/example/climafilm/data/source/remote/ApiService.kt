@@ -8,21 +8,21 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("movie/on-playing")
+    @GET("app/movie/on-playing")
     suspend fun getPlayingNowMovies(): Response<Poster>
 
-    @GET("movie/popular")
+    @GET("app/movie/popular")
     suspend fun getPopularMovies(): Response<Poster>
 
-    @GET("movie/top-rated")
+    @GET("app/movie/top-rated")
     suspend fun getTopRatedMovies(): Response<Poster>
 
-    @GET("movie/upcoming")
+    @GET("app/movie/upcoming")
     suspend fun getUpcomingMovies(): Response<Poster>
 
-    @GET("movie/movie-detail/{id}")
+    @GET("app/movie/movie-detail/{id}")
     suspend fun getMovieDetailsById(@Path("id") movieId: Int): Response<MovieDetail>
 
-    @GET("movie/on-playing/{city}")
+    @GET("app/movie/on-playing/{city}")
     suspend fun getMoviePerCity(@Path("city") city: String): Response<Map<Long, List<MovieResponse>>>
 }
