@@ -49,7 +49,7 @@ As regras do gênero que irá ser listado você pode conferir na documentação 
 ## 📲 Download para testar o app
 Baixe a versão mais recente do ClimaFlim e instale no seu dispositivo Android:
 
-[📥 Baixar última versão]()
+[📥 Baixar última versão](https://github.com/wpmello/climafilm-app/releases/tag/v1.0.0)
 
 ---
 
