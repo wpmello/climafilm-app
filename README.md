@@ -38,7 +38,7 @@ As regras do gênero que irá ser listado você pode conferir na documentação 
   </tr>
   <tr>
     <td><p align="center">Tela Inicial</p></td>
-    <td><p align="center">Tela de Detalhes</p></td>
+    <td><p align="center">Tela de Clima</p></td>
     <td><p align="center">Detalhes do filme</p></td>
     <td><p align="center">Tela de Configuração</p></td>
   </tr>
