@@ -62,6 +62,7 @@ Se você quiser clonar e rodar o projeto na sua máquina, siga os passos abaixo:
 - [Java JDK 17+](https://adoptium.net/).
 - [Gradle](https://gradle.org/install/) (opcional, já vem no Android Studio).
 - Git instalado na máquina.
+- Ter a [API ClimaApi](https://github.com/wpmello/climafilm-api) devidamente rodando na sua máquina.
 
 ### 🔹 Passo a passo
 
@@ -75,7 +76,7 @@ Se você quiser clonar e rodar o projeto na sua máquina, siga os passos abaixo:
 
 4. Conecte um dispositivo Android ou inicie um Emulador no Android Studio.
 
-5. Clique em ▶️ Run para instalar e executar o app.
+5. Com a ClimaFilmApi rodando corretamente, clique em ▶️ Run para instalar e executar o app.
 
 ### 🔹 Observações
 
