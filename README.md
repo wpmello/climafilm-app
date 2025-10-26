@@ -5,13 +5,24 @@ As regras do gênero que irá ser listado você pode conferir na documentação 
 
 ---
 
-## 🛠️ Tecnologias utilizadas
-<p align="left">
-  <img src="https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white" />
-  <img src="https://img.shields.io/badge/Kotlin-1.9-purple?logo=kotlin&logoColor=white" />
-  <img src="https://img.shields.io/badge/Android-Compose-brightgreen?logo=android&logoColor=white" />
-  <img src="https://img.shields.io/badge/Gradle-8.0-black?logo=gradle&logoColor=white" />
-</p> 
+## 🧰 Tecnologias e Arquitetura
+
+O **ClimaFilm App** foi desenvolvido utilizando **Android nativo moderno** com foco em **Clean Architecture** e **boas práticas de escalabilidade e testabilidade**.
+
+- 🏗 **Arquitetura:** Clean Architecture + MVVM  
+- 🧩 **UI:** Jetpack Compose + Navigation Component (NavHost)  
+- ⚙️ **Injeção de dependência:** Hilt (Dagger)  
+- 🔄 **Concorrência:** Kotlin Coroutines + Flow  
+- 💾 **Camada de dados:** Retrofit
+- 🧠 **Gerenciamento de estado:** ViewModel + StateFlow  
+- 🎨 **Design System:** Material 3  
+
+Essas tecnologias foram escolhidas para garantir:
+- Separação clara de responsabilidades entre camadas  
+- Código modular e de fácil manutenção  
+- Facilidade para evoluir o app e adicionar novas features  
+- Melhor testabilidade e reuso de componentes  
+
 
 ---
 
@@ -68,7 +79,7 @@ Se você quiser clonar e rodar o projeto na sua máquina, siga os passos abaixo:
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repo.git
+   git clone https://github.com/wpmello/climafilm-app.git
    
 2. Vá em File > Open... e selecione a pasta do projeto.
 
