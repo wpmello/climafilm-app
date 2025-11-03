@@ -1,4 +1,4 @@
-package com.example.climafilm.data.model
+package com.example.climafilm.data.source.remote.model.movie
 
 import com.example.climafilm.domain.model.Movie
 

@@ -1,6 +1,6 @@
 package com.example.climafilm.domain.usecase
 
-import com.example.climafilm.data.model.MovieResponse
+import com.example.climafilm.data.source.remote.model.movie.MovieResponse
 import retrofit2.Response
 
 interface GetMoviesPerCityUseCase {

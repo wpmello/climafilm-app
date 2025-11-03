@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
-import com.example.climafilm.data.model.MovieResponse
+import com.example.climafilm.data.source.remote.model.movie.MovieResponse
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.presentation.components.item.MovieItem
 import com.example.climafilm.presentation.components.permission.RequestLocationPermission

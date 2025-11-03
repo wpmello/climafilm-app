@@ -44,8 +44,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.climafilm.R
-import com.example.climafilm.data.model.detail.Genre
-import com.example.climafilm.data.model.detail.MovieDetail
+import com.example.climafilm.data.source.remote.model.movie.detail.GenreResponse
+import com.example.climafilm.data.source.remote.model.movie.detail.MovieDetailResponse
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.presentation.viewmodels.moviedetail.MovieDetailViewModel
 import com.example.climafilm.util.CommonComponents
@@ -96,7 +96,7 @@ fun MovieDetailsScreen(
 
 @Composable
 fun MovieDetailContent(
-    movie: MovieDetail,
+    movie: MovieDetailResponse,
     onBackPressed: () -> Unit
 ) {
     Box(
@@ -210,7 +210,7 @@ fun DetailItem(icon: Int, text: String) {
 }
 
 @Composable
-fun InformationBox(movie: MovieDetail) {
+fun InformationBox(movie: MovieDetailResponse) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -224,7 +224,7 @@ fun InformationBox(movie: MovieDetail) {
         Column(modifier = Modifier.weight(1f)) {
             InfoItem(
                 title = stringResource(R.string.genres),
-                content = mapGenreIdsToNames(movie.genres.map { it.id }, LocalContext.current)
+                content = mapGenreIdsToNames(movie.genreResponses.map { it.id }, LocalContext.current)
                     .joinToString(", ")
             )
             InfoItem(title = stringResource(R.string.tag_line), content = movie.tagline)
@@ -256,11 +256,11 @@ fun InfoItem(title: String, content: String) {
 @Preview(showBackground = true)
 @Composable
 fun MovieDetailScreenPreview() {
-    val movie = MovieDetail(
+    val movie = MovieDetailResponse(
         id = 1,
         title = "Movie Title",
         poster_path = "/path/to/poster",
-        genres = listOf(Genre(1, "name 1"), Genre(1, "name 1"), Genre(1, "name 1")),
+        genreResponses = listOf(GenreResponse(1, "name 1"), GenreResponse(1, "name 1"), GenreResponse(1, "name 1")),
         vote_count = 100,
         vote_average = 7.5,
         release_date = "2023-09-05",

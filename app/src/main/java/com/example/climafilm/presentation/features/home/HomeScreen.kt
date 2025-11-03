@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
-import com.example.climafilm.data.model.Poster
+import com.example.climafilm.data.source.remote.model.movie.PosterResponse
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.presentation.components.card.MovieCard
@@ -78,10 +78,10 @@ fun HomeScreen(onNavigateToMovieDetail: (Int) -> Unit) {
 
 @Composable
 fun HomeContent(
-    nowPlayingMovies: Resource<Poster>,
-    popularMovies: Resource<Poster>,
-    topRatedMovies: Resource<Poster>,
-    upcomingMovies: Resource<Poster>,
+    nowPlayingMovies: Resource<PosterResponse>,
+    popularMovies: Resource<PosterResponse>,
+    topRatedMovies: Resource<PosterResponse>,
+    upcomingMovies: Resource<PosterResponse>,
     onNavigateToMovieDetail: (Int) -> Unit
 ) {
     Column(
@@ -114,7 +114,7 @@ fun HomeContent(
 
 @Composable
 fun NowPlayingSection(
-    nowPlayingMovies: Resource<Poster>,
+    nowPlayingMovies: Resource<PosterResponse>,
     onNavigateToMovieDetail: (Int) -> Unit
 ) {
     Column {

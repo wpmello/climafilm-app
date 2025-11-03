@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.climafilm.R
-import com.example.climafilm.data.model.Poster
+import com.example.climafilm.data.source.remote.model.movie.PosterResponse
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.presentation.components.item.MovieItem
 import com.example.climafilm.presentation.components.title.SimpleTitle
@@ -29,7 +29,7 @@ import com.example.climafilm.util.Resource
 @Composable
 fun MovieList(
     @StringRes title: Int,
-    moviesResource: Resource<Poster>,
+    moviesResource: Resource<PosterResponse>,
     onClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {

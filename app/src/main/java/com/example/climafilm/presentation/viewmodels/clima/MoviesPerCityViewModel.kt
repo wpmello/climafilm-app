@@ -8,7 +8,7 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.R
-import com.example.climafilm.data.model.MovieResponse
+import com.example.climafilm.data.source.remote.model.movie.MovieResponse
 import com.example.climafilm.domain.usecase.GetMoviesPerCityUseCase
 import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
 import com.example.climafilm.util.Resource

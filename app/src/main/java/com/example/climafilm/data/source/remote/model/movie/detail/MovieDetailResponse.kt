@@ -1,11 +1,11 @@
-package com.example.climafilm.data.model.detail
+package com.example.climafilm.data.source.remote.model.movie.detail
 
-data class MovieDetail(
+data class MovieDetailResponse(
     val adult: Boolean,
     val backdrop_path: String,
     val belongs_to_collection: Any,
     val budget: Long,
-    val genres: List<Genre>,
+    val genreResponses: List<GenreResponse>,
     val homepage: String,
     val id: Int,
     val imdb_id: String,
@@ -14,12 +14,12 @@ data class MovieDetail(
     val overview: String,
     val popularity: Double,
     val poster_path: String,
-    val production_companies: List<ProductionCompany>,
-    val production_countries: List<ProductionCountry>,
+    val production_companies: List<ProductionCompanyResponse>,
+    val production_countries: List<ProductionCountryResponse>,
     val release_date: String?,
     val revenue: Long,
     val runtime: Int,
-    val spoken_languages: List<SpokenLanguage>,
+    val spoken_languages: List<SpokenLanguageResponse>,
     val status: String,
     val tagline: String,
     val title: String,
