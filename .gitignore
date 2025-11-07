@@ -1,15 +1,108 @@
+# =========================
+# Android / Gradle
+# =========================
 *.iml
-.gradle
-/local.properties
+.gradle/
+build/
+captures/
+output.json
+local.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+/.idea/shelf/
+.idea/deploymentTargetDropDown.xml
+.idea/deviceManager.xml
+.idea/gradle.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/other.xml
+.idea/androidTestResultsUserPreferences.xml
+.idea/runConfigurations.xml
+.idea/AndroidProjectSystem.xml
+.idea/inspectionProfiles/
+.idea/vcs.xml
+.idea/markdown-navigator.xml
+.idea/markdown-navigator/
+.idea/modules/
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/kotlinc.xml
+
+# Se preferir manter apenas a estrutura mínima da IDE:
+# !.idea/codeStyles/
+# !.idea/runConfigurations/
+
+# =========================
+# Gradle Wrapper
+# =========================
+/gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# =========================
+# Logs & temporários
+# =========================
+*.log
+*.temp
+*.tmp
+*.swp
+*.DS_Store
+*.orig
+*.bak
+
+# =========================
+# Android Studio build outputs
+# =========================
+app/build/
+*/build/
+*/out/
+
+# =========================
+# Kotlin / Java
+# =========================
+.classpath
+.project
+.settings/
+*.class
+
+# =========================
+# NDK / CMake
+# =========================
+.cxx/
+.externalNativeBuild/
+
+# =========================
+# Android Profiling / Test Reports
+# =========================
+*.hprof
+*.ec
+*.coverage
+*.hprof
+*.trace
+*/reports/
+*/test-results/
+
+# =========================
+# Others
+# =========================
+.idea/
+.vscode/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.jar
+*.so
+*.keystore
+*.jks
+
+# =========================
+# JSON temporários
+# =========================
+1.json
+2.json
+*.json.temp
