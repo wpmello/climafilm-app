@@ -1,11 +1,13 @@
 package com.example.climafilm.data.source.remote.model.movie.detail
 
+import com.example.climafilm.data.source.local.db.entity.MovieDetailEntity
+
 data class MovieDetailResponse(
     val adult: Boolean,
     val backdrop_path: String,
     val belongs_to_collection: Any,
     val budget: Long,
-    val genreResponses: List<GenreResponse>,
+    val genres: List<GenreResponse>,
     val homepage: String,
     val id: Int,
     val imdb_id: String,
@@ -27,3 +29,21 @@ data class MovieDetailResponse(
     val vote_average: Double,
     val vote_count: Int
 )
+
+fun MovieDetailResponse.toEntity(): MovieDetailEntity {
+    return MovieDetailEntity(
+        id = id,
+        backdrop_path = backdrop_path,
+        budget = budget,
+        genres = genres,
+        overview = overview,
+        poster_path = poster_path,
+        release_date = release_date,
+        revenue = revenue,
+        runtime = runtime,
+        tagline = tagline,
+        title = title,
+        vote_average = vote_average,
+        vote_count = vote_count
+    )
+}
