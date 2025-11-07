@@ -44,9 +44,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.climafilm.R
-import com.example.climafilm.data.model.detail.Genre
-import com.example.climafilm.data.model.detail.MovieDetail
+import com.example.climafilm.data.source.remote.model.movie.detail.GenreResponse
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
+import com.example.climafilm.domain.model.MovieDetail
 import com.example.climafilm.presentation.viewmodels.moviedetail.MovieDetailViewModel
 import com.example.climafilm.util.CommonComponents
 import com.example.climafilm.util.Constants
@@ -78,8 +78,9 @@ fun MovieDetailsScreen(
         }
 
         is Resource.Error -> {
-            val message = (movieDetail as Resource.Error).message
-                ?: stringResource(R.string.an_error_occurred)
+            val message =
+                if (!(movieDetail as Resource.Error).message.isNullOrEmpty()) (movieDetail as Resource.Error).message
+                else stringResource(R.string.error_loading_movies)
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
 
@@ -182,7 +183,7 @@ fun MovieDetailContent(
                 )
                 DetailItem(
                     icon = R.drawable.ic_access_time,
-                    text = movie.runtime.formatMinutesToHoursAndMinutes()
+                    text = movie.runtime?.formatMinutesToHoursAndMinutes()
                 )
             }
             Text(
@@ -197,7 +198,7 @@ fun MovieDetailContent(
 }
 
 @Composable
-fun DetailItem(icon: Int, text: String) {
+fun DetailItem(icon: Int, text: String?) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Icon(
             painter = painterResource(id = icon),
@@ -205,7 +206,10 @@ fun DetailItem(icon: Int, text: String) {
             tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(24.dp)
         )
-        Text(text = text, color = MaterialTheme.colorScheme.onBackground)
+        Text(
+            text = if (!text.isNullOrEmpty() || !text.isNullOrBlank()) text else "\uD83D\uDEDC",
+            color = MaterialTheme.colorScheme.onBackground
+        )
     }
 }
 
@@ -224,8 +228,8 @@ fun InformationBox(movie: MovieDetail) {
         Column(modifier = Modifier.weight(1f)) {
             InfoItem(
                 title = stringResource(R.string.genres),
-                content = mapGenreIdsToNames(movie.genres.map { it.id }, LocalContext.current)
-                    .joinToString(", ")
+                content = mapGenreIdsToNames(movie.genres?.map { it.id }, LocalContext.current)
+                    ?.joinToString(", ")
             )
             InfoItem(title = stringResource(R.string.tag_line), content = movie.tagline)
             InfoItem(
@@ -234,21 +238,24 @@ fun InformationBox(movie: MovieDetail) {
             )
             InfoItem(
                 title = stringResource(R.string.budget),
-                content = movie.budget.formatCurrency()
+                content = movie.budget?.formatCurrency()
             )
             InfoItem(
                 title = stringResource(R.string.revenue),
-                content = movie.revenue.formatCurrency()
+                content = movie.revenue?.formatCurrency()
             )
         }
     }
 }
 
 @Composable
-fun InfoItem(title: String, content: String) {
+fun InfoItem(title: String, content: String?) {
     Column(modifier = Modifier.padding(bottom = 8.dp)) {
         Text(text = title, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-        Text(text = content, color = Color.White, fontSize = 12.sp)
+        Text(
+            text = if(!content.isNullOrEmpty() || !content.isNullOrBlank()) content else "Informação não disponibilizada pelo serviço ou necessário acesso a internet! \uD83D\uDEDC",
+            color = Color.White, fontSize = 12.sp
+        )
     }
 }
 
@@ -260,7 +267,7 @@ fun MovieDetailScreenPreview() {
         id = 1,
         title = "Movie Title",
         poster_path = "/path/to/poster",
-        genres = listOf(Genre(1, "name 1"), Genre(1, "name 1"), Genre(1, "name 1")),
+        genres = listOf(GenreResponse(1, "name 1"), GenreResponse(1, "name 1"), GenreResponse(1, "name 1")),
         vote_count = 100,
         vote_average = 7.5,
         release_date = "2023-09-05",
@@ -269,19 +276,7 @@ fun MovieDetailScreenPreview() {
         budget = 1000000,
         revenue = 2000000,
         backdrop_path = "/path/to/backdrop",
-        adult = false,
-        belongs_to_collection = Any(),
-        homepage = "",
-        imdb_id = "",
-        original_language = "",
-        original_title = "",
-        popularity = 0.0,
-        production_companies = emptyList(),
-        production_countries = emptyList(),
-        runtime = 0,
-        spoken_languages = emptyList(),
-        status = "",
-        video = false
+        runtime = 120
     )
 //    MovieDetailScreen(movie.id)
     MovieDetailContent(movie) { }

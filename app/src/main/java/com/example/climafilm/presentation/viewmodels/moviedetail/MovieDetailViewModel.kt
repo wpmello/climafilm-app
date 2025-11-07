@@ -1,7 +1,7 @@
 package com.example.climafilm.presentation.viewmodels.moviedetail
 
 import androidx.lifecycle.viewModelScope
-import com.example.climafilm.data.model.detail.MovieDetail
+import com.example.climafilm.domain.model.MovieDetail
 import com.example.climafilm.domain.usecase.GetMovieDetailsUseCase
 import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
 import com.example.climafilm.util.Resource

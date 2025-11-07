@@ -25,8 +25,8 @@ enum class MovieGenre(val id: Int, val genreNameResourceId: Int) {
     WESTERN(37, R.string.genre_western);
 }
 
-fun mapGenreIdsToNames(genreIds: List<Int>, context: Context): List<String> {
-    return genreIds.map { id ->
+fun mapGenreIdsToNames(genreIds: List<Int>?, context: Context): List<String>? {
+    return genreIds?.map { id ->
         MovieGenre.entries.find { it.id == id }?.genreNameResourceId?.let { context.getString(it) }
             ?: context.getString(R.string.unknown)
     }

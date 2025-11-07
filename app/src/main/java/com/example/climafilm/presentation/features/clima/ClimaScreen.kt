@@ -14,16 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -46,8 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
-import com.example.climafilm.data.model.MovieResponse
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
+import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.presentation.components.item.MovieItem
 import com.example.climafilm.presentation.components.permission.RequestLocationPermission
 import com.example.climafilm.presentation.components.searchbar.SearchBarIU
@@ -189,7 +189,7 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
         when (movieState) {
             is Resource.Success -> CategorizedMovies(categorizedMovies, onNavigateToMovieDetail)
             is Resource.Error -> Text(
-                text = stringResource(R.string.error_loading_movies),
+                text = movieState.message ?: stringResource(R.string.error_loading_movies),
                 color = Color.Red,
                 fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                 fontSize = 14.sp,
@@ -206,7 +206,7 @@ fun ClimaScreen(onNavigateToMovieDetail: (Int) -> Unit) {
 
 @Composable
 fun CategorizedMovies(
-    categorizedMovies: Map<Int, List<MovieResponse>>,
+    categorizedMovies: Map<Int, List<Movie>>,
     onNavigateToMovieDetail: (Int) -> Unit
 ) {
     LazyColumn(
@@ -218,7 +218,7 @@ fun CategorizedMovies(
         categorizedMovies.forEach { (genreId, movies) ->
             item {
                 Column {
-                    val genreName = mapGenreIdsToNames(listOf(genreId), LocalContext.current).joinToString()
+                    val genreName = mapGenreIdsToNames(listOf(genreId), LocalContext.current)?.joinToString()
                     SimpleTitle(
                         title = genreName,
                         fontSize = 20,
@@ -236,7 +236,7 @@ fun CategorizedMovies(
                     ) {
                         items(movies) { movie ->
                             MovieItem(
-                                movie = movie.toEntity(),
+                                movie = movie,
                                 onClick = { onNavigateToMovieDetail(movie.id) }
                             )
                         }
@@ -250,7 +250,7 @@ fun CategorizedMovies(
 @Preview(showBackground = true)
 @Composable
 private fun ClimaScreenPreview() {
-    val movies = listOf(MovieResponse(
+    val movies = listOf(Movie(
         id = 1,
         title = "Movie Title",
         poster_path = "/path/to/poster",
@@ -264,7 +264,7 @@ private fun ClimaScreenPreview() {
         original_title = "Original Title",
         popularity = 0.0,
     ),
-        MovieResponse(
+        Movie(
             id = 1,
             title = "Movie Title hdiapjpo daop ud puspoa udposupaodu pos",
             poster_path = "/path/to/poster",

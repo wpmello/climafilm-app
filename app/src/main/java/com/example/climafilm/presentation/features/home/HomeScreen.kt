@@ -42,7 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climafilm.R
-import com.example.climafilm.data.model.Poster
 import com.example.climafilm.domain.enums.mapGenreIdsToNames
 import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.presentation.components.card.MovieCard
@@ -78,10 +77,10 @@ fun HomeScreen(onNavigateToMovieDetail: (Int) -> Unit) {
 
 @Composable
 fun HomeContent(
-    nowPlayingMovies: Resource<Poster>,
-    popularMovies: Resource<Poster>,
-    topRatedMovies: Resource<Poster>,
-    upcomingMovies: Resource<Poster>,
+    nowPlayingMovies: Resource<List<Movie>>,
+    popularMovies: Resource<List<Movie>>,
+    topRatedMovies: Resource<List<Movie>>,
+    upcomingMovies: Resource<List<Movie>>,
     onNavigateToMovieDetail: (Int) -> Unit
 ) {
     Column(
@@ -114,7 +113,7 @@ fun HomeContent(
 
 @Composable
 fun NowPlayingSection(
-    nowPlayingMovies: Resource<Poster>,
+    nowPlayingMovies: Resource<List<Movie>>,
     onNavigateToMovieDetail: (Int) -> Unit
 ) {
     Column {
@@ -129,7 +128,7 @@ fun NowPlayingSection(
 
         when (nowPlayingMovies) {
             is Resource.Success -> {
-                val movies = nowPlayingMovies.data?.results?.map { it.toEntity() } ?: emptyList()
+                val movies = nowPlayingMovies.data?.map { it } ?: emptyList()
                 val pagerState = rememberPagerState(initialPage = 0) { movies.size }
                 HorizontalPager(
                     state = pagerState,
@@ -163,7 +162,7 @@ fun NowPlayingSection(
 
             is Resource.Error -> {
                 Text(
-                    text = nowPlayingMovies.message ?: stringResource(R.string.error_loading_movies),
+                    text = if (!nowPlayingMovies.message.isNullOrEmpty()) nowPlayingMovies.message else stringResource(R.string.error_loading_movies),
                     color = Color.Red,
                     fontFamily = FontFamily(Font(R.font.quicksand_bold)),
                     fontSize = 14.sp
@@ -206,7 +205,7 @@ fun MoviePage(movie: Movie, onClick: () -> Unit) {
                 ) {
                     Text(
                         text = mapGenreIdsToNames(movie.genre_ids ?: listOf(), LocalContext.current)
-                            .joinToString(", "),
+                            ?.joinToString(", ") ?: "",
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.quicksand_bold)),

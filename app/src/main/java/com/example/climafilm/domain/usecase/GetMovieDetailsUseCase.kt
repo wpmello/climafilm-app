@@ -1,8 +1,8 @@
 package com.example.climafilm.domain.usecase
 
-import com.example.climafilm.data.model.detail.MovieDetail
-import retrofit2.Response
+import com.example.climafilm.domain.model.MovieDetail
+import com.example.climafilm.util.Resource
 
 interface GetMovieDetailsUseCase {
-    suspend operator fun invoke(movieId: Int): Response<MovieDetail>
+    suspend operator fun invoke(movieId: Int): Resource<MovieDetail>
 }

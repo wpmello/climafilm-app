@@ -1,8 +1,8 @@
 package com.example.climafilm.domain.usecase
 
-import com.example.climafilm.data.model.MovieResponse
-import retrofit2.Response
+import com.example.climafilm.domain.model.Movie
+import com.example.climafilm.util.Resource
 
 interface GetMoviesPerCityUseCase {
-    suspend operator fun invoke(city: String): Response<Map<Long, List<MovieResponse>>>
+    suspend operator fun invoke(city: String): Resource<Map<Long, List<Movie>>>
 }
