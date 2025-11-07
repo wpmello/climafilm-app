@@ -1,7 +1,7 @@
 package com.example.climafilm.presentation.viewmodels.moviedetail
 
 import androidx.lifecycle.viewModelScope
-import com.example.climafilm.data.source.remote.model.movie.detail.MovieDetailResponse
+import com.example.climafilm.domain.model.MovieDetail
 import com.example.climafilm.domain.usecase.GetMovieDetailsUseCase
 import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
 import com.example.climafilm.util.Resource
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase
-) : BaseViewModel<MovieDetailResponse>() {
+) : BaseViewModel<MovieDetail>() {
     override fun fetchMovies() {}
 
     fun initialize(movieId: Int) {

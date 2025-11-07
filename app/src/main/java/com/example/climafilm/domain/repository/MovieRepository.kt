@@ -1,15 +1,14 @@
 package com.example.climafilm.domain.repository
 
-import com.example.climafilm.data.source.remote.model.movie.MovieResponse
-import com.example.climafilm.data.source.remote.model.movie.PosterResponse
-import com.example.climafilm.data.source.remote.model.movie.detail.MovieDetailResponse
-import retrofit2.Response
+import com.example.climafilm.domain.model.Movie
+import com.example.climafilm.domain.model.MovieDetail
+import com.example.climafilm.util.Resource
 
 interface MovieRepository {
-    suspend fun getPlayingNowMovies(): Response<PosterResponse>
-    suspend fun getPopularMovies(): Response<PosterResponse>
-    suspend fun getTopRatedMovies(): Response<PosterResponse>
-    suspend fun getUpcomingMovies(): Response<PosterResponse>
-    suspend fun getMovieDetailsById(movieId: Int): Response<MovieDetailResponse>
-    suspend fun getMoviePerCity(city: String): Response<Map<Long, List<MovieResponse>>>
+    suspend fun getPlayingNowMovies(): Resource<List<Movie>>
+    suspend fun getPopularMovies(): Resource<List<Movie>>
+    suspend fun getTopRatedMovies(): Resource<List<Movie>>
+    suspend fun getUpcomingMovies(): Resource<List<Movie>>
+    suspend fun getMovieDetailsById(id: Int): Resource<MovieDetail>
+    suspend fun getMoviePerCity(city: String): Resource<Map<Long, List<Movie>>>
 }

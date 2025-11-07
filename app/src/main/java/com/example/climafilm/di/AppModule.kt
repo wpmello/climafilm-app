@@ -1,13 +1,19 @@
 package com.example.climafilm.di
 
 import android.content.Context
+import androidx.room.Room
 import com.example.climafilm.data.source.remote.ApiService
 import com.example.climafilm.data.repository.MovieRepositoryImpl
 import com.example.climafilm.data.source.local.AppPreferences
+import com.example.climafilm.data.source.local.db.AppDatabase
+import com.example.climafilm.data.source.local.db.dao.MovieDao
+import com.example.climafilm.data.source.local.db.dao.MovieDetailDao
 import com.example.climafilm.domain.repository.MovieRepository
 import com.example.climafilm.domain.usecase.*
 import com.example.climafilm.domain.usecase.impls.*
 import com.example.climafilm.util.Constants.Companion.BASE_URL
+import com.example.climafilm.util.NetworkChecker
+import com.example.climafilm.util.NetworkCheckerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,8 +55,26 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesMovieRepository(apiService: ApiService): MovieRepository {
-        return MovieRepositoryImpl(apiService)
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase =
+        Room.databaseBuilder(context, AppDatabase::class.java, "app_database").build()
+
+    @Provides
+    @Singleton
+    fun provideMovieDao(db: AppDatabase) = db.movieDao()
+
+    @Provides
+    @Singleton
+    fun provideMovieDetailDao(db: AppDatabase) = db.movieDetailDao()
+
+    @Provides
+    @Singleton
+    fun providesMovieRepository(
+        apiService: ApiService,
+        movieDao: MovieDao,
+        movieDetailDao: MovieDetailDao,
+        networkChecker: NetworkChecker
+        ): MovieRepository {
+        return MovieRepositoryImpl(apiService, movieDao, movieDetailDao, networkChecker)
     }
 
     @Provides
@@ -93,5 +117,11 @@ object AppModule {
     @Singleton
     fun providesAppPreferences(@ApplicationContext context: Context): AppPreferences {
         return AppPreferences(context)
+    }
+
+    @Provides
+    @Singleton
+    fun providesNetworkChecker(@ApplicationContext context: Context): NetworkChecker {
+        return NetworkCheckerImpl(context)
     }
 }

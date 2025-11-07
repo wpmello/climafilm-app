@@ -1,8 +1,8 @@
 package com.example.climafilm.domain.usecase
 
-import com.example.climafilm.data.source.remote.model.movie.PosterResponse
-import retrofit2.Response
+import com.example.climafilm.domain.model.Movie
+import com.example.climafilm.util.Resource
 
 interface GetPlayingNowMoviesUseCase {
-    suspend operator fun invoke(): Response<PosterResponse>
+    suspend operator fun invoke(): Resource<List<Movie>>
 }

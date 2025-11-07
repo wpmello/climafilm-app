@@ -8,7 +8,7 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.viewModelScope
 import com.example.climafilm.R
-import com.example.climafilm.data.source.remote.model.movie.MovieResponse
+import com.example.climafilm.domain.model.Movie
 import com.example.climafilm.domain.usecase.GetMoviesPerCityUseCase
 import com.example.climafilm.presentation.viewmodels.base.BaseViewModel
 import com.example.climafilm.util.Resource
@@ -30,9 +30,9 @@ import kotlin.random.Random
 @HiltViewModel
 class MoviesPerCityViewModel @Inject constructor(
     private val getMoviesPerCityUseCase: GetMoviesPerCityUseCase
-) : BaseViewModel<List<MovieResponse>>() {
-    private val _categorizedMovies = MutableStateFlow<Map<Int, List<MovieResponse>>>(emptyMap())
-    var categorizedMovies: StateFlow<Map<Int, List<MovieResponse>>> = _categorizedMovies
+) : BaseViewModel<List<Movie>>() {
+    private val _categorizedMovies = MutableStateFlow<Map<Int, List<Movie>>>(emptyMap())
+    var categorizedMovies: StateFlow<Map<Int, List<Movie>>> = _categorizedMovies
     private val _cityName = MutableStateFlow("")
     var cityName: StateFlow<String> = _cityName
     private val _temp = MutableStateFlow(0)
@@ -43,24 +43,24 @@ class MoviesPerCityViewModel @Inject constructor(
     fun search(city: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _movie.value = Resource.Loading()
-            val movieResponse = getMoviesPerCityUseCase.invoke(city.trim())
+            val movieResource = getMoviesPerCityUseCase.invoke(city.trim())
             _movie.value =
-                handleResponse(movieResponse).map { it?.values?.flatten() ?: emptyList() }
+                handleResponse(movieResource).map { it?.values?.flatten() ?: emptyList() }
             categorizeMovies()
             _cityName.value = city
-            _temp.value = movieResponse.body()?.keys?.first()?.toInt() ?: 0
+            _temp.value = movieResource.data?.keys?.first()?.toInt() ?: 0
         }
     }
 
     private fun categorizeMovies() {
-        val allMovies = _movie.value.data
+        val allMovies = _movie.value.data ?: emptyList()
 
-        if (allMovies.isNullOrEmpty()) {
+        if (allMovies.isEmpty()) {
             _categorizedMovies.value = emptyMap()
             return
         }
 
-        val categories = allMovies.flatMap { it.genre_ids }.toSet()
+        val categories = allMovies.flatMap { it.genre_ids as List<Int> }.toSet()
 
         if (categories.isEmpty()) {
             _categorizedMovies.value = emptyMap()
@@ -69,7 +69,7 @@ class MoviesPerCityViewModel @Inject constructor(
 
         _categorizedMovies.value = categories.associateWith { category ->
             allMovies.filter { movie ->
-                movie.genre_ids.contains(category)
+                movie.genre_ids?.contains(category) == true
             }
         }.filterValues { it.isNotEmpty() }
     }
