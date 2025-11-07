@@ -10,31 +10,33 @@ As regras do gênero que irá ser listado você pode conferir na documentação 
 O **ClimaFilm App** foi desenvolvido utilizando **Android nativo moderno** com foco em **Clean Architecture** e **boas práticas de escalabilidade e testabilidade**.
 
 - 🏗 **Arquitetura:** Clean Architecture + MVVM  
-- 🧩 **UI:** Jetpack Compose + Navigation Component (NavHost)  
+- 🧩 **UI:** Jetpack Compose + Jetpack Navigation (NavHost)  
 - ⚙️ **Injeção de dependência:** Hilt (Dagger)  
 - 🔄 **Concorrência:** Kotlin Coroutines + Flow  
-- 💾 **Camada de dados:** Retrofit
+- 💾 **Camada de dados:** Retrofit + Room (cache local e modo offline)  
+- 📶 **Modo offline:** suporte a exibição de filmes e detalhes mesmo sem conexão  
 - 🧠 **Gerenciamento de estado:** ViewModel + StateFlow  
 - 🎨 **Design System:** Material 3  
 
-Essas tecnologias foram escolhidas para garantir:
+Essas tecnologias foram escolhidas para garantir:  
 - Separação clara de responsabilidades entre camadas  
 - Código modular e de fácil manutenção  
+- Suporte a **modo offline** com cache inteligente via Room  
 - Facilidade para evoluir o app e adicionar novas features  
 - Melhor testabilidade e reuso de componentes  
-
 
 ---
 
 ## ⚙️ Funcionalidades  
 
 - [x] Listagem e atualização de filmes em tempo real  
+- [x] Modo offline com cache local de filmes e detalhes  
 - [x] Tela de pesquisa para encontrar um estado/país e receber filmes com o gênero baseado no clima do local pesquisado  
 - [x] Tela de detalhes do filme  
 - [x] Tela de configuração (idioma, tema do aplicativo, formato de temperatura °C/°F, etc.)  
 - [ ] Tela de IA para auxílio na escolha do filme/série (em desenvolvimento)  
 - [ ] Tela de login (em desenvolvimento)  
-- [ ] Sistema de assinatura mensal (em desenvolvimento)  
+- [ ] Sistema de assinatura mensal (em desenvolvimento)
 
 ---
 
